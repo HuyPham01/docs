@@ -9,7 +9,7 @@ sudo apt install docker-ce -y
 sudo systemctl status docker
 ```
 # Step2 disabe firewall swap
-- Kubernetes khuyến nghị swap
+- Kubernetes khuyến nghị tắt swap
 ```bash
 ufw disable
 swapoff -a
