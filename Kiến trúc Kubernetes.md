@@ -7,6 +7,6 @@ Việc tính toán cấu hình máy chủ của hai khối này tương đối k
 - ***API server:*** Là đầu vào của mọi kết nối trong Kubernetes Cluster
 - ***Cluster store:*** Lưu trữ thông tin của toàn bộ Kubernetes Cluster. Mặc định sử dụng là etcd. Mình đọc đâu đó thì có một giải pháp thay thế etcd bằng sqlite cho hệ thống siêu nhỏ.
 - ***Controller manager:*** Thực hiện các công tác điều khiển vòng lặp (control loop). Có rất nhiều thành phần điều khiển nhỏ hơn bên trong như Replication controller, Node controller, Endpoints controller,…. Chúng ta sẽ đi dần trong chuỗi bài này
-- ***Scheduler:*** Thực hiện việc lập lịch để chạy ứng dụng trên các Worker node.
+- ***Scheduler:*** Thực hiện việc lập lịch để chạy ứng dụng trên các Worker node.  
 ![image](https://github.com/HuyPham01/docs/assets/96679595/7680e701-c5d7-4434-911d-2559c6bf1ed1)
 
