@@ -15,7 +15,7 @@ Việc tính toán cấu hình máy chủ của hai khối này tương đối k
 - ***Kube-proxy:*** Tương tác với iptables để thiết lập các chính sách truy cập
 - ***Container runtime:*** Thực hiện pull image, start và stop container theo chỉ thị từ kubelet  
 ![image](https://github.com/HuyPham01/docs/assets/96679595/1c32e815-9828-46f0-bad3-d11020795708)  
-##  Worker node và Master node giao tiếp với nhau như thế nào?
+##  Worker node và Master node giao tiếp với nhau như thế nào?  
 ![image](https://github.com/HuyPham01/docs/assets/96679595/d05ae18b-3e93-40e6-8600-102e8555ffd0)  
 API server chính là cửa ngõ cho mọi giao tiếp giữa các thành phần, kể cả gõ lệnh tương tác qua CLI (Command Line Interface) hay qua RESTful API thì cũng phải qua API server.  
 
