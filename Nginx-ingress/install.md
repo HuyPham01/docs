@@ -1,1 +1,1 @@
-https://raw.githubusercontent.com/xuanthulabnet/learn-kubernetes/master/imgs/kubernetes057.png![image](https://github.com/HuyPham01/docs/assets/96679595/d001eb30-ef8c-42f6-9c82-8683ea5cd486)
+![image](https://github.com/HuyPham01/docs/assets/96679595/d001eb30-ef8c-42f6-9c82-8683ea5cd486)
