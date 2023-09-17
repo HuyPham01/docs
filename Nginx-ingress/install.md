@@ -25,5 +25,102 @@ Kiểm tra daemonset và các pod của Nginx Ingress Controller
 kubectl get ds -n nginx-ingress
 kubectl get po -n nginx-ingress
 ```
-<img width="899" alt="Screen Shot 2023-09-17 at 22 24 09" src="https://github.com/HuyPham01/docs/assets/96679595/30361838-c7a2-47fe-a67d-9b68efabc55b">
-
+<img width="899" alt="Screen Shot 2023-09-17 at 22 24 09" src="https://github.com/HuyPham01/docs/assets/96679595/30361838-c7a2-47fe-a67d-9b68efabc55b">  
+##  Tạo service vs Ingress
+service.yaml
+```bash
+apiVersion: v1
+kind: Service
+metadata:
+  name: http-test-svc
+  namespace: nginx-ingress
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: http-test-app
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: http-test-svc
+  name: http-test-svc
+  namespace: nginx-ingress
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: http-test-app
+  template:
+    metadata:
+      labels:
+        run: http-test-app
+    spec:
+      containers:
+      - image: httpd
+        imagePullPolicy: IfNotPresent
+        name: http
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources: {}
+```
+ingress-not-ssl.yaml
+```bash
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app
+  namespace: nginx-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+    # Tên miền truy cập
+  - host: huypd.test
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          # dịch vụ phục vụ tương ứng với tên miền và path
+          service:
+            name: http-test-svc
+            port:
+              number: 80
+```
+ingress-ssl.yaml
+```bash
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app
+  namespace: nginx-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: nginx
+spec:
+  tls:
+    - hosts:
+      - xuanthulab.test
+      secretName: default-server-secret
+  rules:
+    # Tên miền truy cập
+  - host: xuanthulab.test
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          # dịch vụ phục vụ tương ứng với tên miền và path
+          service:
+            name: http-test-svc
+            port:
+              number: 80
+```
