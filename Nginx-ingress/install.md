@@ -25,7 +25,6 @@ Kiểm tra daemonset và các pod của Nginx Ingress Controller
 kubectl get ds -n nginx-ingress
 kubectl get po -n nginx-ingress
 ```
-<img width="899" alt="Screen Shot 2023-09-17 at 22 24 09" src="https://github.com/HuyPham01/docs/assets/96679595/30361838-c7a2-47fe-a67d-9b68efabc55b">  
 ##  Tạo service vs Ingress
 service.yaml
 ```bash
@@ -95,6 +94,9 @@ spec:
             port:
               number: 80
 ```
+Hãy truy cập và kiểm tra từ trình duyệt đến địa chỉ http://huypd.test  
+
+Triển khai SSL truy cập bằng https, ở đây sử dụng chính các xác thực lưu trong Secret có tên default-server-secret, đi kèm Nginx Ingress Controller.  
 ingress-ssl.yaml
 ```bash
 apiVersion: networking.k8s.io/v1
@@ -108,11 +110,11 @@ metadata:
 spec:
   tls:
     - hosts:
-      - xuanthulab.test
+      - huypd.test
       secretName: default-server-secret
   rules:
     # Tên miền truy cập
-  - host: xuanthulab.test
+  - host: huypd.test
     http:
       paths:
       - path: /
