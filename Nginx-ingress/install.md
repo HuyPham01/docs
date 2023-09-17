@@ -1,1 +1,3 @@
-![image](https://github.com/HuyPham01/docs/assets/96679595/d001eb30-ef8c-42f6-9c82-8683ea5cd486)
+![image](https://github.com/HuyPham01/docs/assets/96679595/d001eb30-ef8c-42f6-9c82-8683ea5cd486)  
+NGINX Kubernetes Ingress Controller là một ingress hỗ trợ khả năng căn bằng tải, SSL, URI rewrite ...  
+Ingress Controller được cung cấp bởi Nginx là một proxy nổi tiếng, mã nguồn của Nginx Ingress Controller trên github tại: [link](https://github.com/nginxinc/kubernetes-ingress/tree/main) v3.2.1
