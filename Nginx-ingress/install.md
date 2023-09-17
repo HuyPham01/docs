@@ -25,7 +25,7 @@ Kiểm tra daemonset và các pod của Nginx Ingress Controller
 kubectl get ds -n nginx-ingress
 kubectl get po -n nginx-ingress
 ```
-<img width="899" alt="Screen Shot 2023-09-17 at 22 24 09" src="https://github.com/HuyPham01/docs/assets/96679595/30361838-c7a2-47fe-a67d-9b68efabc55b">  
+![image](img width="899" alt="Screen Shot 2023-09-17 at 22 24 09" src="https://github.com/HuyPham01/docs/assets/96679595/30361838-c7a2-47fe-a67d-9b68efabc55b")  
 ##  Tạo service vs Ingress
 service.yaml
 ```bash
