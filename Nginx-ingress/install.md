@@ -25,6 +25,8 @@ Kiểm tra daemonset và các pod của Nginx Ingress Controller
 kubectl get ds -n nginx-ingress
 kubectl get po -n nginx-ingress
 ```
+## default-server-secret
+Tạo secret đúng với domain, đối với `Secret` chỉ nhận dữ liệu kiểu base64
 ##  Tạo service vs Ingress
 service.yaml
 ```bash
