@@ -35,6 +35,7 @@ NodePort Service là một trong những cách nguyên thủy nhất đễ kết
 ![image](https://github.com/HuyPham01/docs/assets/96679595/0685b92c-3b1f-4fbb-9d76-10ce7ec478ad)
 
 ## Ingress
+Không giống các ví dụ trên, Ingress không thực sự là một loại service. Thay vào đó, nó đứng trước nhiều services, và hoạt động như một smart router hoặc entry point tới cluster .  
 Đánh giá:
 
 - NodePort và LoadBalancer expose service bằng cách chỉ định service type. Ingress tiếp cập theo phương pháp khác
