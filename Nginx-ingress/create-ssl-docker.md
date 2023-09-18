@@ -24,5 +24,5 @@ docker run -it --rm --name certbot \
 Khi chạy sẽ hỏi phần thông tin nhập email và chọn Y các câu hỏi như các bước bạn tạo certificate với Letsencrypt.  
 
 Tất các các file cert sẽ lưu tại  /etc/letsencrypt/live/$domain  
-`fullchain.pem` = cert
+`fullchain.pem` = cert  
 `privkey.pem` = key
