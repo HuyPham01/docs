@@ -16,6 +16,8 @@ Các option trên đều sử dụng với mục đích Expose service từ nộ
 - Tất cả traffic tới Port sẽ được forward vào bên trong Service và tới các Pod bên trong
 - Phương pháp có nhược điểm, quản lý Port cấp phát không rõ ràng, đôi khi cấp phát port chồng chéo
 ![image](https://github.com/HuyPham01/docs/assets/96679595/228595d4-25ed-48f0-b30a-53f21a361ba6)
+![image](https://github.com/HuyPham01/docs/assets/96679595/0c9ac75f-0956-42f8-8f39-5ce7eaba5846)
+
 ## LoadBalancer
 Đánh giá:
 
