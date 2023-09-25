@@ -23,6 +23,7 @@ install plugin
 ```bash
 gcloud components install gke-gcloud-auth-plugin
 echo 'export USE_GKE_GCLOUD_AUTH_PLUGIN=True' >> ~/.zshenv
+source ~/.zshenv
 ```
 gcloud container clusters get-credentials [cluster-name]
 ```bash
