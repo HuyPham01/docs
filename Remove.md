@@ -6,7 +6,7 @@ Lệnh kubectl drain được sử dụng để đảm bảo rằng một node K
 
 Tuy nhiên, trước khi bạn sử dụng kubectl drain, có một số điều cần lưu ý:  
 
-- `--ignore-daemonsets:` Khi sử dụng tùy chọn này, Kubernetes sẽ bỏ qua các DaemonSet. DaemonSet đảm bảo rằng mỗi node trong cụm (cluster) luôn chạy một bản sao của một Pod cụ thể. Thông qua `--ignore-daemonsets`, có thể yêu cầu Kubernetes tạm thời bỏ qua DaemonSet khi drain node, cho phép dừng node mà không cần lo lắng về DaemonSet.
+- `--ignore-daemonsets:` Khi sử dụng tùy chọn này, Kubernetes sẽ bỏ qua các DaemonSet. DaemonSet đảm bảo rằng mỗi node trong cụm (cluster) luôn chạy một bản sao của một Pod cụ thể. Thông qua `--ignore-daemonsets`, có thể yêu cầu Kubernetes tạm thời bỏ qua DaemonSet khi drain node, cho phép dừng node mà không cần lo lắng về DaemonSet.  
 `kubectl uncordon <node_name>` để khôi phục node và cho phép các Pod khởi động lại trên node đó.
 
 ## Xóa nút khỏi cụm:
