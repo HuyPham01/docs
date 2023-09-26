@@ -1,4 +1,4 @@
-## Xả nút bạn muốn xóa:  
+## Xả nút muốn xóa:  
 ```bash
 kubectl drain <node_name> --ignore-daemonsets
 ```
