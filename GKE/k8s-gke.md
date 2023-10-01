@@ -18,3 +18,4 @@ Thay vì phải tự tạo infrastructure, hay cluster thì sử dụng `Managed
 |Auto Upgrade /Auto Repair Nodes|
 |Auto Logging, Monitoring|
 <img width="1021" alt="Screen Shot 2023-10-01 at 22 55 00" src="https://github.com/HuyPham01/docs/assets/96679595/ea621b4a-9346-40e4-a692-a3a41d0f7869">  
+<img width="986" alt="Screen Shot 2023-10-01 at 22 57 35" src="https://github.com/HuyPham01/docs/assets/96679595/1085701b-a8c5-4395-be5d-da17fb28d186">  
