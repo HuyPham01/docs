@@ -47,6 +47,48 @@ kubectl create serviceaccount k8s-service-account
 ```bash
 kubectl annotate serviceaccount k8s-service-account \
 ```
+## Testing
+`Step1`: First you need to create a Google Cloud Storage bucket  
+```bash
+gsutil mb -p <project-id> -c STANDARD -l us-east1 gs://my-example-bucket/
+```
+`Step2`: create a Kubernetes manifest that deploys an application that accesses Google Cloud Storage using GKE Workload Identity  
+```bash
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-app
+  template:
+    metadata:
+      labels:
+        app: my-app
+    spec:
+      serviceAccountName: k8s-service-account
+      containers:
+      - name: my-app
+        image: google/cloud-sdk:alpine
+        command: ["gsutil", "ls", "gs://my-example-bucket"]
+```
+- image chỉ định `google/cloud-sdk:alpine` Docker, bao gồm `gsutil` công cụ cho phép tương tác với Google Cloud Storage.
+> kubectl apply
+```bash
+kubectl apply -f <manifest-file-name>.yaml
+```
+Check logs
+```bash
+$ kubectl logs -f deployment.apps/my-app
+```
+output
+```
+$ kubectl logs -f deployment.apps/my-app
+gs://my-example-bucket/api.jpg
+```
+Với thiết lập này, ứng dụng của có thể truy cập Google Cloud Storage bằng GKE Workload Identity mà không cần phải quản lý thông tin đăng nhập ứng dụng.  
 
 
 
