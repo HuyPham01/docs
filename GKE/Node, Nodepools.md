@@ -12,8 +12,10 @@ Dưới đây là một số lợi ích của việc sử dụng nodepool trong 
 - Dễ dàng mở rộng cluster: Nodepool giúp dễ dàng mở rộng cluster GKE của mình bằng cách thêm hoặc xóa các node.  
 - Quản lý dễ dàng: Nodepool giúp dễ dàng quản lý các node trong cluster GKE của mình bằng cách cung cấp một lớp trừu tượng cho các node.  
 - Cải thiện hiệu suất: Nodepool có thể giúp cải thiện hiệu suất của cluster GKE của bằng cách cho phép bạn phân phối các container của mình trên các node có cấu hình khác nhau.  
-- Cải thiện khả năng sẵn sàng: Nodepool có thể giúp cải thiện khả năng sẵn sàng của cluster GKE bằng cách cho phép bạn phân phối các container của mình trên nhiều node.  
+- Cải thiện khả năng sẵn sàng: Nodepool có thể giúp cải thiện khả năng sẵn sàng của cluster GKE bằng cách cho phép bạn phân phối các container của mình trên nhiều node.
+   
 Dưới đây là một số ví dụ về khi nào bạn nên sử dụng nodepool trong GKE:  
+   
 - Cần mở rộng cluster của mình một cách dễ dàng: Nếu Cần mở rộng cluster GKE của mình một cách dễ dàng và nhanh chóng, thì nên sử dụng nodepool.
 - Cần quản lý các node của mình một cách dễ dàng: Nếu Cần quản lý các node trong cluster GKE của mình một cách dễ dàng, thì nên sử dụng nodepool.
 - Cần cải thiện hiệu suất của cluster của mình: Nếu Cần cải thiện hiệu suất của cluster GKE của mình, thì có thể sử dụng nodepool để phân phối các container của mình trên các node có cấu hình khác nhau.
