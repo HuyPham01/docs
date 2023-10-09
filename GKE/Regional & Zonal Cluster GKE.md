@@ -32,12 +32,13 @@ Nhược điểm:
 Việc lựa chọn loại cluster nào phụ thuộc vào nhu cầu cụ thể của ứng dụng. Nếu cần một ứng dụng có độ sẵn sàng cao và khả năng chịu lỗi cao, thì bạn nên lựa chọn regional cluster. Nếu cần một ứng dụng có chi phí thấp và dễ dàng quản lý, thì nên lựa chọn zonal cluster.  
 
 Dưới đây là một số ví dụ về khi nào nên sử dụng regional cluster và khi nào nên sử dụng zonal cluster:  
-
-Regional cluster:
+  
+Regional cluster:  
 - Các ứng dụng web và ứng dụng di động có lưu lượng truy cập cao.  
 - Các ứng dụng thương mại điện tử và tài chính.  
 - Các ứng dụng xử lý dữ liệu lớn.
-Zonal cluster:
+  
+Zonal cluster:  
 - Các ứng dụng nội bộ của công ty.  
 - Các ứng dụng phát triển và thử nghiệm.  
 - Các ứng dụng có lưu lượng truy cập thấp.  
