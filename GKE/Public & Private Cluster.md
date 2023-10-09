@@ -1,7 +1,7 @@
 # Public & Private Cluster GKE là hai loại cluster khác nhau được cung cấp bởi Google Kubernetes Engine (GKE).
 
 - Public Cluster GKE: Là loại cluster có bộ điều khiển (control plane) và các node đều có địa chỉ IP công khai. Điều này có nghĩa là có thể truy cập cluster từ bất kỳ đâu trên internet. Public cluster thường được sử dụng cho các ứng dụng cần được truy cập bởi người dùng bên ngoài, chẳng hạn như trang web hoặc ứng dụng di động.
-- Private Cluster GKE: Là loại cluster có bộ điều khiển và các node đều có địa chỉ IP riêng. Điều này có nghĩa là chỉ có thể truy cập cluster từ bên trong mạng riêng của mình. Private cluster thường được sử dụng cho các ứng dụng nhạy cảm, chẳng hạn như ứng dụng tài chính hoặc y tế.
+- Private Cluster GKE: Là loại cluster có bộ điều khiển và các node đều có địa chỉ IP riêng. Điều này có nghĩa là chỉ có thể truy cập cluster từ bên trong mạng riêng của mình và muốn kết nối internet thì phải sử dụng Cloud NAT để kết nối ra internet. Private cluster thường được sử dụng cho các ứng dụng nhạy cảm, chẳng hạn như ứng dụng tài chính hoặc y tế.
 ### Ưu điểm và nhược điểm của Public Cluster GKE  
 
 Ưu điểm:  
