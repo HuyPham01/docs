@@ -33,12 +33,12 @@ Việc lựa chọn loại cluster nào phụ thuộc vào nhu cầu cụ thể 
 
 Dưới đây là một số ví dụ về khi nào nên sử dụng regional cluster và khi nào nên sử dụng zonal cluster:  
 
-> Regional cluster:
-Các ứng dụng web và ứng dụng di động có lưu lượng truy cập cao.  
-Các ứng dụng thương mại điện tử và tài chính.  
-Các ứng dụng xử lý dữ liệu lớn.  
-> Zonal cluster:
-Các ứng dụng nội bộ của công ty.  
-Các ứng dụng phát triển và thử nghiệm.  
-Các ứng dụng có lưu lượng truy cập thấp.  
+Regional cluster:
+- Các ứng dụng web và ứng dụng di động có lưu lượng truy cập cao.  
+- Các ứng dụng thương mại điện tử và tài chính.  
+- Các ứng dụng xử lý dữ liệu lớn.
+Zonal cluster:
+- Các ứng dụng nội bộ của công ty.  
+- Các ứng dụng phát triển và thử nghiệm.  
+- Các ứng dụng có lưu lượng truy cập thấp.  
 Cũng có thể kết hợp sử dụng regional cluster và zonal cluster để tạo ra một hybrid cluster. Điều này cho phép tận dụng được lợi thế của cả hai loại cluster. Ví dụ, có thể tạo một regional cluster cho các ứng dụng quan trọng của mình và một zonal cluster cho các ứng dụng phát triển và thử nghiệm.
