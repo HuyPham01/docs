@@ -1,6 +1,6 @@
 # Node và nodepool trong GKE là hai khái niệm khác nhau nhưng có liên quan chặt chẽ với nhau.
 
-- Node (nút) là một máy tính ảo (VM) chạy Container Runtime cùng với Kubernetes Node Agent: kubelet để giao tiếp với Control Plane. Mỗi node trong một cluster GKE đều có một vai trò cụ thể, chẳng hạn như chạy các container hoặc lưu trữ dữ liệu. Từ GKE Node 1.19, Docker container runtime đã bị deprecated đã đổi sang dùng Containerd.  
+- Node (nút) là một máy tính ảo (Compute Engine VM instance) chạy Container Runtime cùng với Kubernetes Node Agent: kubelet để giao tiếp với Control Plane. Mỗi node trong một cluster GKE đều có một vai trò cụ thể, chẳng hạn như chạy các container hoặc lưu trữ dữ liệu. Từ GKE Node 1.19, Docker container runtime đã bị deprecated đã đổi sang dùng Containerd.  
 - Nodepool (nhóm nút) là một nhóm các node có cùng cấu hình. Nodepool giúp bạn dễ dàng quản lý và mở rộng cluster GKE của mình.
 Khi khởi tạo một cluster GKE, sẽ được yêu cầu tạo một nodepool đầu tiên. Nodepool này sẽ chứa các node chạy các container. Có thể tạo thêm nodepool bất cứ lúc nào để mở rộng cluster của mình.  
 
