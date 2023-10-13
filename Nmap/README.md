@@ -38,7 +38,8 @@ Sử dụng `-T4` để quét nhanh, –F (Fast scan) để quét 100 port phổ
 
 file output có dạng: 
 
-<img src = "https://github.com/trangnth/NMAP/blob/master/img/nmap-output.png">
+![image](https://github.com/HuyPham01/docs/assets/96679595/2a54d8f9-d332-4a45-83cb-29825229ada7)
+
 
 
 <a name="research"></a>
