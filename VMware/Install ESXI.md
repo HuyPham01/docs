@@ -41,6 +41,44 @@ Sau khi hoàn tất, hệ thống yêu cầu reboot nhấn `Enter`
 
 ![image](https://github.com/HuyPham01/docs/assets/96679595/4d8c0928-eb73-49e2-9b86-5fb2778ddc22)  
 
+Sau khi reboot giao diện thiện thị(DCUI) của ESXI 6.5  
+
+![image](https://github.com/HuyPham01/docs/assets/96679595/29c4948f-34d7-42d3-aa91-a5ab93763520)  
+
+Ấn `f2` để vào bên trong - gômg các chức năng cơ bản cho ESXI. Lúc này yều cầu pass của user `root`  
+
+![image](https://github.com/HuyPham01/docs/assets/96679595/0ef066d3-de55-423e-81be-624d099f0682)   
+
+## Config IP tĩnh
+chon `configure management network`  
+
+![image](https://github.com/HuyPham01/docs/assets/96679595/29ac1498-f92d-4998-8a99-875cce893921)  
+
+Chọn `IPv4 config....`  
+
+![image](https://github.com/HuyPham01/docs/assets/96679595/6d369791-876b-497f-ad8b-999c8098393f)
+
+`Set static Ipv4...` để cấu hình ip tĩnh  
+
+![image](https://github.com/HuyPham01/docs/assets/96679595/3c176253-b758-4d88-b990-f1d01328d28d)  
+
+Nhấn `ESC` để thoát, thông xác nhận thay đổi cấu hình network chọn `Y` để lựu lại  
+
+![image](https://github.com/HuyPham01/docs/assets/96679595/4a20a212-c09c-46b7-90c6-9baa9ed15f1c)  
+
+# Truy cập ESXI bằng Web client
+
+truy cập bằng `https://{server}`  
+login băng user password `root`  
+![image](https://github.com/HuyPham01/docs/assets/96679595/c3307f07-1f34-4699-9bc5-68b44efeb2be)
+
+
+
+
+
+
+
+
 
 
 
