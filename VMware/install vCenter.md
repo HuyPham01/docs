@@ -93,3 +93,6 @@ Cài đặt thành công
 Truy cập vào web client qua `https://{ip server}`
 
 ![image](https://github.com/HuyPham01/docs/assets/96679595/e6410244-93e7-445c-acca-bbc22c5b6ead)  
+
+![image](https://github.com/HuyPham01/docs/assets/96679595/20ac69ef-f0f5-4ce6-acdc-40e00c65f172)  
+
