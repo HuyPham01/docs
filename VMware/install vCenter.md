@@ -91,3 +91,5 @@ Cài đặt thành công
 ![image](https://github.com/HuyPham01/docs/assets/96679595/7d107838-818f-4c15-ba92-bc08d709c2bd)  
 # Step 17
 Truy cập vào web client qua `https://{ip server}`
+
+![image](https://github.com/HuyPham01/docs/assets/96679595/e6410244-93e7-445c-acca-bbc22c5b6ead)  
