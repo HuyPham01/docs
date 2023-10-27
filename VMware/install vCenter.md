@@ -89,16 +89,5 @@ Quá trình cấu hình sẽ bắt đầu.
 
 Cài đặt thành công  
 ![image](https://github.com/HuyPham01/docs/assets/96679595/7d107838-818f-4c15-ba92-bc08d709c2bd)  
-
-# Step 17 Cấu hình ip tĩnh
-Truy cập vào máy chủ ESXI được cài đặt vCenter trên đó  
-![image](https://github.com/HuyPham01/docs/assets/96679595/b77ae214-ae7f-4d6e-8c51-e9c67fdefc3d)  
-
-Nhấn `f2` vCenter yêu cầu nhập pass `root`  
-![image](https://github.com/HuyPham01/docs/assets/96679595/efc60f5f-2a59-4354-9ef8-8608f7c39450)  
-
-![image](https://github.com/HuyPham01/docs/assets/96679595/bf08167e-1242-4aef-8e7d-3780e6e2fcde)  
-
-
-
-
+# Step 17
+Truy cập vào web client qua `https://{ip server}`
