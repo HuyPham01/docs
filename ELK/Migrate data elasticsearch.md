@@ -37,7 +37,8 @@ Trong Elasticsearch, mapping đóng vai trò vô cùng quan trọng, nó chính 
 Các chức năng chính của mapping:  
 - Xác định kiểu dữ liệu: Mapping cho biết mỗi trường chứa loại dữ liệu nào, chẳng hạn như văn bản, số, ngày, vị trí địa lý, v.v. Điều này giúp Elasticsearch lưu trữ và xử lý dữ liệu hiệu quả hơn.
 - Cấu trúc dữ liệu: Mapping giúp bạn thiết lập cấu trúc và mối quan hệ giữa các trường trong một document. Điều này cho phép bạn thực hiện các truy vấn phức tạp dựa trên các mối quan hệ này.
-- Tùy chỉnh hành vi tìm kiếm: Mapping cho phép bạn tinh chỉnh cách các trường được đánh chỉ mục và tìm kiếm. Bạn có thể kích hoạt phân tích văn bản, tokenization, và các tùy chọn khác để cải thiện độ chính xác và hiệu quả của tìm kiếm.  
+- Tùy chỉnh hành vi tìm kiếm: Mapping cho phép bạn tinh chỉnh cách các trường được đánh chỉ mục và tìm kiếm. Bạn có thể kích hoạt phân tích văn bản, tokenization, và các tùy chọn khác để cải thiện độ chính xác và hiệu quả của tìm kiếm.
+  
 Chạy với self-sign certificate:
 ```bash
 NODE_TLS_REJECT_UNAUTHORIZED=0 elasticdump \
