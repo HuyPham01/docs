@@ -112,13 +112,13 @@ Vai trò này `ingress`phát hiện ra mục tiêu cho mỗi đường đi của
 
 Nhãn meta có sẵn:
 
-`__meta_kubernetes_namespace`: Không gian tên của đối tượng xâm nhập.
-`__meta_kubernetes_ingress_name`: Tên của đối tượng xâm nhập.
-`__meta_kubernetes_ingress_label_<labelname>:` Mỗi nhãn từ đối tượng xâm nhập.
-`__meta_kubernetes_ingress_labelpresent_<labelname>`: `true`cho mỗi nhãn từ đối tượng xâm nhập.
-`__meta_kubernetes_ingress_annotation_<annotationname>:` Mỗi chú thích từ đối tượng xâm nhập.
-`__meta_kubernetes_ingress_annotationpresent_<annotationname>:` `true`cho mỗi chú thích từ đối tượng xâm nhập.
-`__meta_kubernetes_ingress_class_name`: Tên lớp từ thông số lối vào, nếu có.
-`__meta_kubernetes_ingress_scheme`: Sơ đồ giao thức xâm nhập, httpsnếu cấu hình TLS được đặt. Mặc định là http.
-`__meta_kubernetes_ingress_path`: Đường dẫn từ thông số kỹ thuật xâm nhập. Mặc định là `/.`
+- `__meta_kubernetes_namespace`: Không gian tên của đối tượng xâm nhập.
+- `__meta_kubernetes_ingress_name`: Tên của đối tượng xâm nhập.
+- `__meta_kubernetes_ingress_label_<labelname>:` Mỗi nhãn từ đối tượng xâm nhập.
+- `__meta_kubernetes_ingress_labelpresent_<labelname>`: `true`cho mỗi nhãn từ đối tượng xâm nhập.
+- `__meta_kubernetes_ingress_annotation_<annotationname>:` Mỗi chú thích từ đối tượng xâm nhập.
+- `__meta_kubernetes_ingress_annotationpresent_<annotationname>:` `true`cho mỗi chú thích từ đối tượng xâm nhập.
+- `__meta_kubernetes_ingress_class_name`: Tên lớp từ thông số lối vào, nếu có.
+- `__meta_kubernetes_ingress_scheme`: Sơ đồ giao thức xâm nhập, httpsnếu cấu hình TLS được đặt. Mặc định là http.
+- `__meta_kubernetes_ingress_path`: Đường dẫn từ thông số kỹ thuật xâm nhập. Mặc định là `/.`
 
