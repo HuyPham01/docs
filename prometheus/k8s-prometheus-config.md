@@ -10,7 +10,7 @@ Nhãn meta có sẵn:
 
 - `__meta_kubernetes_node_name`: Tên của đối tượng nút.
 - `__meta_kubernetes_node_provider_id`: Tên nhà cung cấp đám mây cho đối tượng nút.
-- `__eta_kubernetes_node_label_<labelname>`: Mỗi nhãn từ đối tượng nút.
+- `__meta_kubernetes_node_label_<labelname>`: Mỗi nhãn từ đối tượng nút.
 - `__meta_kubernetes_node_labelpresent_<labelname>`: `true`cho mỗi nhãn từ đối tượng nút.
 - `__meta_kubernetes_node_annotation_<annotationname>`: Mỗi chú thích từ đối tượng nút.
 - `__meta_kubernetes_node_annotationpresent_<annotationname>`: `true`cho mỗi chú thích từ đối tượng nút.
