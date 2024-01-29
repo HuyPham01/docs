@@ -108,4 +108,40 @@ server {
   }
 }
 ```
+# config file gitlab.rb
 
+```
+# ---
+
+## GitLab URL
+##! URL on which GitLab will be reachable.
+##! For more details on configuring external_url see:
+##! https://docs.gitlab.com/omnibus/settings/configuration.html#configuring-the-external-url-for-gitlab
+external_url 'https://gitlab.your-domain.com'
+
+##! **Override only if you use a reverse proxy**
+##! Docs: https://docs.gitlab.com/omnibus/settings/nginx.html#setting-the-nginx-listen-port
+nginx['listen_port'] = 80
+
+##! **Override only if your reverse proxy internally communicates over HTTP**
+##! Docs: https://docs.gitlab.com/omnibus/settings/nginx.html#supporting-proxied-ssl
+nginx['listen_https'] = false
+
+# nginx['custom_gitlab_server_config'] = "location ^~ /foo-namespace/bar-project/raw/ {\n deny all;\n}\n"
+# nginx['custom_nginx_config'] = "include /etc/nginx/conf.d/example.conf;"
+# nginx['proxy_read_timeout'] = 3600
+# nginx['proxy_connect_timeout'] = 300
+nginx['proxy_set_headers'] = {
+ "Host" => "$http_host_with_default",
+ #"X-Real-IP" => "$remote_addr",
+ "X-Forwarded-For" => "$proxy_add_x_forwarded_for",
+ "X-Forwarded-Proto" => "https",
+ "X-Forwarded-Ssl" => "on",
+ #"Upgrade" => "$http_upgrade",
+ #"Connection" => "$connection_upgrade"
+}
+
+### GitLab Shell settings for GitLab
+# map port ssh gitlab
+gitlab_rails['gitlab_shell_ssh_port'] = 8022
+```
