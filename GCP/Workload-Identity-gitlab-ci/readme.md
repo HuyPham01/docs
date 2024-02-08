@@ -1,2 +1,5 @@
 # Sử dịch vụ GCP trong Pipelines CI/CD GitLab
-Theo truyền thống, khi sử dụng các dịch vụ như Google Cloud trong môi trường không phải GCP (ví dụ: môi trường CI/CD như quy trình GitLab), nhà phát triển sẽ cần sử service account hoặc other long-lived credentials to authenticate with Google Cloud services. Tuy nhiên, phương pháp này có một số rủi ro về bảo mật:
+Theo truyền thống, khi sử dụng các dịch vụ như Google Cloud trong môi trường không phải GCP (ví dụ: môi trường CI/CD như quy trình GitLab), nhà phát triển sẽ cần sử service account hoặc other long-lived credentials to authenticate with Google Cloud services. Tuy nhiên, phương pháp này có một số rủi ro về bảo mật:  
+- **Long-Term Credential Exposure: Service account keys are long-lived credentials**,thường có giá trị cho đến khi bị thu hồi hoặc xoay vòng theo cách thủ công. Việc lưu trữ các khóa này trong kho mã nguồn, tệp cấu hình hoặc môi trường CI/CD sẽ làm tăng nguy cơ truy cập trái phép nếu các kho lưu trữ hoặc environments này bị xâm phạm.
+- **Privilege Escalation: Service account keys** thường có các quyền rộng được thiết kế để thực hiện nhiều tác vụ khác nhau trong Google Cloud. Nếu kẻ tấn công có được quyền truy cập vào khóa tài khoản dịch vụ, chúng có thể truy cập vào nhiều loại tài nguyên, có thể vượt xa mức cần thiết cho một ứng dụng hoặc khối lượng công việc cụ thể.
+- 
