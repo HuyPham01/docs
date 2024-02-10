@@ -7,4 +7,16 @@ giải quyết những mối lo ngại về bảo mật này và cho phép bạn
 Các thành phần chính:
 - **Identity provider (IdP):** IdP là hệ thống xác thực người dùng và cấp cho họ thông tin xác thực. GCP hỗ trợ nhiều nhà cung cấp danh tính khác nhau như Dịch vụ liên kết Active Directory (ADFS), Okta, Azure Active Directory hoặc bất kỳ nhà cung cấp danh tính nào hỗ trợ OpenID Connect (OIDC) hoặc SAML 2.0.
 - **Workload identity pool:** Một thực thể cho phép quản lý danh tính bên ngoài. GCP khuyên bạn nên tạo một nhóm mới cho từng môi trường không phải của Google Cloud cần truy cập vào tài nguyên của Google Cloud.
-- **Service account:**
+- **Service account:** Trong GCP, tài khoản dịch vụ được sử dụng để thể hiện khối lượng công việc. Để truy cập tài nguyên, danh tính nhóm phải được cấp quyền truy cập vào tài khoản dịch vụ. Sau khi được thêm, những danh tính này sẽ có quyền truy cập vào mọi dịch vụ Google Cloud mà tài khoản dịch vụ có thể truy cập.
+- **Federated token:** Mã thông báo liên kết là mã thông báo do IdP phát hành và được đổi lấy mã thông báo tài khoản dịch vụ. Mã thông báo liên kết cho phép khối lượng công việc xác thực GCP dưới dạng tài khoản dịch vụ.
+## Cách liên kết IdP gcp vào gitlab pipelines
+## Cần có
+- Ensure you have the Workload Identity Pool Admin `(roles/iam.workloadIdentityPoolAdmin)` and Service Account Admin `(roles/iam.serviceAccountAdmin)` roles on the project.
+```
+export GCP_PROJECT_ID="value"
+gcloud services enable cloudresourcemanager.googleapis.com \
+iam.googleapis.com \
+iamcredentials.googleapis.com \
+sts.googleapis.com \
+--project $GCP_PROJECT_ID
+```
