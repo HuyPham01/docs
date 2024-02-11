@@ -1,4 +1,5 @@
 # Demo show storage bucket
+sử dụng gitlab runner executor `shell`
 file `.gitlab-ci.yml`  
 Cần 2 biến env `GCP_PROJECT_NAME = values` `GCP_PROJECT_NUMBER = values`  
 ```
