@@ -48,5 +48,5 @@ gcloud iam service-accounts add-iam-policy-binding gitlab-wif-demo@${GCP_PROJECT
     --member="principalSet://iam.googleapis.com/projects/$PROJECT_NUMBER/locations/global/workloadIdentityPools/gitlab-demo-wip/*"
 ```
 ![image](https://github.com/HuyPham01/docs/assets/96679595/b1a568fd-cf6c-4b63-ac8c-4d1102ca5784)  
-
+**[Demo code show storage gcp](./show-storage.md)**
 [deploy](https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines#create_the_workload_identity_pool_and_provider)
