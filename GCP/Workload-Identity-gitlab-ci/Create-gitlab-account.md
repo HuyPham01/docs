@@ -28,4 +28,14 @@ Attribute mapping:
 Biến ánh xạ thuộc tính ánh xạ các thuộc tính từ thông tin xác thực do Gitlab cấp sang thuộc tính Google Cloud.   có thể tìm thấy danh sách đầy đủ các thuộc tính của [Gitlab](https://docs.gitlab.com/ee/ci/cloud_services/google_cloud/) tại đây.   có thể ánh xạ tới các thuộc tính sau của Google Cloud:  
 - **google.subject:** Bắt buộc. Nó phải được ánh xạ để Google biết ai là chủ thể đưa ra yêu cầu. Trong trường hợp của Gitlab, chúng tôi ánh xạ nó tới `assertion.sub`. Ngay cả khi nó là bắt buộc, giá trị này sẽ không ảnh hưởng đến kiến ​​trúc của chúng ta trừ khi   đặt nó làm điều kiện cho liên kết IAM tập hợp chính mà chúng ta sẽ thấy sau.
 - **attribute.NAME:** Có thể tạo các thuộc tính mới mà Google chưa có để   có thể ánh xạ chúng tới những thuộc tính mà Gitlab cung cấp, điều này sẽ cho phép   đặt điều kiện về những người có thể truy cập vào tài khoản dịch vụ sẽ bị nhóm mạo danh. Trong trường hợp của chúng tôi, chúng tôi sẽ muốn ánh xạ tên không gian làm việc để mỗi không gian làm việc chỉ có thể truy cập vào tài khoản dịch vụ đã chọn.  
+### Step 3: Create a service account that the gitlab external identity can impersonate.
+```
+#Create a service account
+gcloud iam service-accounts create gitlab-wif-demo --project=$GCP_PROJECT_ID
+
+#Add sample permissions to the Service account
+gcloud projects add-iam-policy-binding $GCP_PROJECT_ID \
+  --member=serviceAccount:gitlab-wif-demo@${GCP_PROJECT_ID}.iam.gserviceaccount.com \
+  --role=roles/storage.admin
+```
 [deploy](https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines#create_the_workload_identity_pool_and_provider)
