@@ -23,5 +23,5 @@ Click the box `Include Google-provided` role grants on the right side of the win
 
 Click the `pencil` icon to edit the service account.  
 Click `ADD ANOTHER ROLE`  
-In the role filter enter `Compute`. Select Compute Instance Admin (v1).  
+In the role filter enter `Compute`. Select `role name title step1`.  
 Click `SAVE`  
