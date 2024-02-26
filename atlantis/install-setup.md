@@ -86,3 +86,15 @@ server {
   }
 }
 ```
+## Register a GitLab webhook
+- Go to your repo's home page
+- Click Settings > Webhooks in the sidebar
+- set URL to your ngrok url with `/events` at the end. Ex. https://atlantis.xxx.xyz/events
+- double-check you added `/events` to the end of your URL.
+- set Secret Token to your random string
+- check the boxes
+  - Push events
+  - Comments
+  - Merge Request events
+- leave Enable SSL verification checked
+- click Add webhook
