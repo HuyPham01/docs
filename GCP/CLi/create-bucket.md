@@ -10,7 +10,7 @@ gcloud storage buckets create gs://bucket-name --location=asia-southeast1 --log-
 ```
 fix
 ```
-gcloud projects add-iam-policy-binding hiepnn-linux11111 \
+gcloud projects add-iam-policy-binding [projects-id] \
   --member serviceAccount:id-compute@developer.gserviceaccount.com \
   --role=roles/storage.admin
 ```
