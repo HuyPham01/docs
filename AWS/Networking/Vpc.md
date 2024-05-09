@@ -18,6 +18,19 @@ Mặc dù ta có thể tạo bất kỳ dãy ip nào cho VPC miễn là nó hợ
 172.16.100.0–172.16.100.3  
 172.16.100.255  
 Trong một zone sẽ có 1 public subnet và 1,2,3...private subnet  
-![image](https://github.com/HuyPham01/docs/assets/96679595/45ff4ea0-a628-406a-879d-a671fccf0727)  
+![image](https://github.com/HuyPham01/docs/assets/96679595/45ff4ea0-a628-406a-879d-a671fccf0727)   
+Khi tạo `VPC and more` và đây là mô hình kết nối:  VPC đước kết nối đến subnet, route table and internet gateway (network connections).
+![image](https://github.com/HuyPham01/docs/assets/96679595/9d63806a-8bd5-4a7a-a091-23bc1df97a5a)  
+Thiết lập `NAT gateway` để các instances private có thể kết nối ra bên ngoài. Nhưng từ bên ngoài thì không thể kết nối đến các instance đó.  
+Trong khi điểm cuối VPC được kết nối với các dịch vụ do AWS PrivateLink cung cấp, bao gồm nhiều dịch vụ AWS. Nhấp vào `Create VPC`  
+![image](https://github.com/HuyPham01/docs/assets/96679595/4b90efd5-33f5-4c01-930d-77e00a1a571b)  
+![image](https://github.com/HuyPham01/docs/assets/96679595/af9f8d12-491e-4baa-ab26-ffd3f4aef3b2)  
+click view vpc, click the Subnet section. subnet in VPC có nghĩa là range of IP addresses in VPC. Có 3 loại subnet:  
+1. Public subnet:  có thể kết nối Internet bằng gateway or egress-only internet gateway.
+2. Private subnet:  không kết nối Internet, nhưng muốn có thể kêt nối qua NAT gateway.
+3. VPN-only subnet: needs a Site-to-Site VPN connection with a virtual private gateway.
+Click filter subnets based on VPC values. Có thể dùng cách nay để xem các subnet trên vpc. Và có thể tạo thêm subnet.
+![image](https://github.com/HuyPham01/docs/assets/96679595/4f348b6f-6681-4b09-b5e2-dc669b621834)
+
 
 
