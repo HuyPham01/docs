@@ -31,6 +31,17 @@ click view vpc, click the Subnet section. subnet in VPC có nghĩa là range of 
 3. VPN-only subnet: needs a Site-to-Site VPN connection with a virtual private gateway.
 Click filter subnets based on VPC values. Có thể dùng cách nay để xem các subnet trên vpc. Và có thể tạo thêm subnet.
 ![image](https://github.com/HuyPham01/docs/assets/96679595/4f348b6f-6681-4b09-b5e2-dc669b621834)
+Click subnet ID budionosan-vpc-subnet-public1-us-west-1a.
+![image](https://github.com/HuyPham01/docs/assets/96679595/e86278fb-3ab6-45d0-b1cb-230fef7799da)  
+The public subnet has 2 routes, 1 local và internet gateway để connect ra internet
+![image](https://github.com/HuyPham01/docs/assets/96679595/e8a8c815-c9c1-4bef-b74e-ace7e2ac1ac3)
+Click subnet ID budionosan-vpc-subnet-private1-us-west-1a.
+![image](https://github.com/HuyPham01/docs/assets/96679595/c88107cd-f071-432e-9dd1-6a0f968fad05)  
+The private subnet has one route, because private subnet cannot connect internet. Private subnet recommended for databases. Có thể connect internet qua NAT gateway  
+![image](https://github.com/HuyPham01/docs/assets/96679595/45f42c49-01e3-4b5e-a656-e6631bdae678)
+
+
+
 
 
 
