@@ -38,7 +38,19 @@ The public subnet has 2 routes, 1 local và internet gateway để connect ra in
 Click subnet ID budionosan-vpc-subnet-private1-us-west-1a.
 ![image](https://github.com/HuyPham01/docs/assets/96679595/c88107cd-f071-432e-9dd1-6a0f968fad05)  
 The private subnet has one route, because private subnet cannot connect internet. Private subnet recommended for databases. Có thể connect internet qua NAT gateway  
-![image](https://github.com/HuyPham01/docs/assets/96679595/45f42c49-01e3-4b5e-a656-e6631bdae678)
+![image](https://github.com/HuyPham01/docs/assets/96679595/45f42c49-01e3-4b5e-a656-e6631bdae678)  
+click `Route Tables`. Trong một VPC để điều hướng các traffic ra và vào, AWS sử dụng một phần mềm gọi là implied router. Router này sẽ dựa theo các rule được định nghĩa trong trong route table để điều hướng các traffic bên trong VPC. Mặc định khi tạo VPC, AWS sẽ tạo sẵn một route table cho VPC gọi là main route table và một khi ta tạo một subnet trong VPC, subnet này sẽ tự động được gắn vào main route table, nếu không muốn sử dụng main route table cho subnet, ta có thể tạo một custom route table rồi gắn subnet vào đó. Một subnet phải được gắn vào một route table.  
+  
+Một rule trong route table gọi là route, một route table có thể chứa một hoặc nhiều route. Các route xác định cách điều hướng các luồng traffic của các instance bên trong subnet được gắn với route table đó. Một route sẽ có hai giá trị sau:  
+   
+- Destination: là một dãy IP, các instance có địa chỉ IP nằm trong khoảng này có thể truy cập đến điểm đến là giá trị của target.  
+- Target: là các tài nguyên network trong AWS như instance, internet gateway...
+  
+Một public subnet (tất cả các instance trong subnet đó có thể truy cập internet và ngược lại) là subnet được gắn vào route table có Destination là tập cha của dãy IP của subnet và Target là một internet gateway. Trong mỗi route table sẽ có một route mặc định với Target là local gọi là local route, route này giúp các instances trong cùng subnet có thể giao tiếp với nhau và có thể giao tiếp với các instance trong subnet khác trong cùng một VPC.  
+![image](https://github.com/HuyPham01/docs/assets/96679595/f9720d32-6c46-4ed7-9123-dc943bd5b7e6)   
+`Internet gateway`  VPC bị cô lập khỏi internet, vậy thì làm sao các thành phần trong VPC như các instances có thể truy cập internet hay từ internet có thể truy cập vào các instances trong VPC? đó chính là nhờ Internet Gateways. Nó cung cấp cho các instance khả năng nhận địa chỉ IP public, kết nối với Internet và nhận các requests từ Internet. Khi bạn tạo VPC, VPC không có Internet Gateway được liên kết với nó. Bạn phải tạo Internet Gateway và gắn nó với VPC theo cách thủ công.  
+![image](https://github.com/HuyPham01/docs/assets/96679595/0ff92f83-28ae-4a9e-b06a-53cb1ed1aad7)  
+
 
 
 
