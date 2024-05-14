@@ -50,6 +50,25 @@ Một public subnet (tất cả các instance trong subnet đó có thể truy c
 ![image](https://github.com/HuyPham01/docs/assets/96679595/f9720d32-6c46-4ed7-9123-dc943bd5b7e6)   
 `Internet gateway`  VPC bị cô lập khỏi internet, vậy thì làm sao các thành phần trong VPC như các instances có thể truy cập internet hay từ internet có thể truy cập vào các instances trong VPC? đó chính là nhờ Internet Gateways. Nó cung cấp cho các instance khả năng nhận địa chỉ IP public, kết nối với Internet và nhận các requests từ Internet. Khi bạn tạo VPC, VPC không có Internet Gateway được liên kết với nó. Bạn phải tạo Internet Gateway và gắn nó với VPC theo cách thủ công.  
 ![image](https://github.com/HuyPham01/docs/assets/96679595/0ff92f83-28ae-4a9e-b06a-53cb1ed1aad7)  
+## Security 
+Vào `Security`. Click security group.Security group kiểm xoát traffic in và out trong vpc.  
+![image](https://github.com/HuyPham01/docs/assets/96679595/20d088c3-7154-425c-9d13-b0475b72d52c)  
+ click filter security group dựa trên vpc. Có thể tạo nhóm mới. Click security group ID sg-066…  
+ ![image](https://github.com/HuyPham01/docs/assets/96679595/2e14d56f-53c6-4aaa-9f41-0b8b3b0def92)  
+ security group được kết nối với VPC (name budionosan-vpc). Có các quy tắc ở đây `inbound rule` và `outbound rule`. Cuộn xuống để xem các `inbound rule` và nhấp vào chỉnh sửa `inbound rule`.  
+ ![image](https://github.com/HuyPham01/docs/assets/96679595/e1b6ecf8-8f4e-4aab-bff5-ec83f6088d3b)  
+ ![image](https://github.com/HuyPham01/docs/assets/96679595/0b3f3a82-d9c9-4b2d-ab87-9735baddd562)  
+ ![image](https://github.com/HuyPham01/docs/assets/96679595/9b48bbb8-c227-4791-b959-b315ef162ffb)  
+ Nếu muốn thêm rule có thể nhấn vào Add rule. Chọn một loại như Tất cả lưu lượng truy cập, TCP, UDP, IPv4, IPv6, SSH, DNS, HTTP, HTTPS, MySQL, Redshift, PostgreSQL và nhiều loại khác.  Input source address xong, hãy nhấp click save rules. Outbound rules giống như inbound rules.   
+ ![image](https://github.com/HuyPham01/docs/assets/96679595/414226c9-36cd-41fd-ae31-68804cde7c56)  
+
+
+
+
+
+
+ 
+
 
 
 
