@@ -39,7 +39,7 @@ setup aws cli
 apt update
 apt install awscli
 ```
-`aws s3 ls` list bucket
-`aws s3 ls <bucket-name>' show Objects
-Fix show objects: `An error occurred (IllegalLocationConstraintException) when calling the ListObjectsV2 operation:..........`
+`aws s3 ls` list bucket  
+`aws s3 ls <bucket-name>' show Objects  
+Fix show objects: `An error occurred (IllegalLocationConstraintException) when calling the ListObjectsV2 operation:..........`  
 `aws s3 ls <bucket-name> --region xxx'  
