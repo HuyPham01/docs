@@ -44,3 +44,48 @@ Chọn `Create personal access token`
 
 ![image](https://github.com/user-attachments/assets/9add517a-9fa9-4144-b4db-e416654c1bc1)  
 Lưu ý, copy token tới 1 nơi lưu trữ tạm vì sẽ cần sử dụng nó, token là `glpat-vzf9Dzs34r_xAF_xVNh9`  
+# User Gitlab trên Jenkins
+### Bước 1: Chọn Manage Jenkins
+
+![image](https://github.com/user-attachments/assets/e8777cc9-46e9-4fb5-a856-5f66d7d1ec1a)
+  
+### Bước 2: Chọn Manage Users
+
+![image](https://github.com/user-attachments/assets/4b20c978-2c8b-4e73-b5c8-ceca04fa4069)  
+### Bước 3: Chọn Create User
+
+![image](https://github.com/user-attachments/assets/6f053721-c23e-4f87-b256-cf89103f5a00)  
+### Bước 4: Nhập thông User và khởi tạo
+Nhập `User: gitlab`  
+Nhập `Password: XXXX`  
+Nhập `Confirm password: XXXX`  
+Nhập `Full name: Gitlab User`  
+Nhập `E-mail address: gitlab-user@example.com`  
+Chọn `Create User` sau khi nhập liệu xong  
+
+![image](https://github.com/user-attachments/assets/5f25cab3-e4f4-4aaf-b438-3644a06c78ef)  
+
+![image](https://github.com/user-attachments/assets/493c255f-e7ff-49f6-8d3c-bcc1c7da214b)  
+
+# Thiết lập User Gitlab trên Jenkins
+### Bước 1: Đăng nhập tài khoản gitlab vừa tạo
+### Bước 2: Chọn Gitlab User => Configure
+
+![image](https://github.com/user-attachments/assets/d6022db8-679d-4263-975e-dde18e9b9ae6)  
+
+### Bước 3: Chọn Add new Token
+
+![image](https://github.com/user-attachments/assets/5976ee63-6c42-479f-8424-bdcd4ae51833)  
+
+### Bước 4: Nhập tên token > Chọn Generate
+
+![image](https://github.com/user-attachments/assets/b48798bd-56b5-495a-ac92-269b5c3ef98d)  
+
+![image](https://github.com/user-attachments/assets/ed4e1262-9d04-4df3-8b0a-31cb28f20440)  
+Lưu ý, copy token tới 1 nơi lưu trữ tạm vì sẽ cần sử dụng nó, token là `11afeaa471ab8502aa350a1eecf259c49a`  
+Chọn `Save` để cập nhật thông tin  
+
+
+
+
+
