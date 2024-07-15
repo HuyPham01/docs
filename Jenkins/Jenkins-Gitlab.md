@@ -16,7 +16,7 @@ Chọn `Create User`
 ### Bước 6: Chọn Edit
 ![image](https://github.com/user-attachments/assets/7184b80b-215a-4540-8e62-2a81f6258ef4)  
 ### Bước 7: Đặt thông tin Password cho User Jenkins
-Nhập 2 giá trị, Password và Password confirmation  
+Nhập 2 giá trị, `Password` và `Password confirmation`  
 
 ![image](https://github.com/user-attachments/assets/4e755989-1f82-44fb-976e-7d5ff81565d7)  
 Chọn `Save changes`  
