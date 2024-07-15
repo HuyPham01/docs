@@ -84,8 +84,99 @@ Chọn `Create User` sau khi nhập liệu xong
 ![image](https://github.com/user-attachments/assets/ed4e1262-9d04-4df3-8b0a-31cb28f20440)  
 Lưu ý, copy token tới 1 nơi lưu trữ tạm vì sẽ cần sử dụng nó, token là `11afeaa471ab8502aa350a1eecf259c49a`  
 Chọn `Save` để cập nhật thông tin  
+# Cài đặt Plugin
+### Bước 1: Chọn Manage Jenkins
+### Bước 2: Chọn Manage Plugins
+### Bước 3: Cài đặt Plugin Gitlab
+Chọn `Available`  
+Nhập `gitlab` và ô Filter  
+Chọn `GitLab`  
+Chọn `Download now and install after restart`  
+Pulugin: `docker-workflow`, `Blue Ocean`, `SSH Agent Plugin`,....  
+# Cấu hình Credential
+### Bước 1: Chọn Manage Jenkins
+### Bước 2: Chọn Configure System
+### Bước 3: Cấu hình Gitlab Plugins
+Nhập cấu hình Gitlab  
+Giá trị `Connection name: My Gitlab Connection`  
+Giá trị `Gitlab host URL: http://10.10.10.85`, lưu ý đây chính là đường dẫn tới địa chỉ của Gitlab  
+Chọn `Add`  
+Chọn `Jenkins`  
+### Bước 4: Khái báo Credentials Gitlab mới
+Tại Kind: Chọn `GitLab API token`  
+Nhập các giá trị:  
+API token: `glpat-vzf9Dzs34r_xAF_xVNh9`, lưu ý giá trị này có được từ bước sinh API Token Gitlab  
+ID: `gitlab-token`  
+Description: `GitLab API Token`  
+Chọn Add sau khi nhập thông tin xong  
+![image](https://github.com/user-attachments/assets/854c1cf6-d642-4a6c-9d43-a1d0bd8698be)   
+Test Connection  
+![image](https://github.com/user-attachments/assets/17a6f5f3-103c-4720-83e5-227794dbcb5e)  
+`SAVE` lưu cấu hình.
+#  Tạo Pipe
+### Bước 1: Chọn New item
+### Bước 2: Nhập thông tin khởi tạo Pipeline
+Nhập `Enter an item name: django-demo`  
+Chọn loại `Pipeline`  
+Chọn `Ok`  
+### Bước 3: Cấu hình mục General
+Cấu hình `Discard old builds`  
+  
+Tính năng chỉ định số bản build sẽ giữ lại, trong bài cấu hình giữ 5 bản gần nhất  
+Chọn `Discard old builds`  
+Nhập `Max # of builds to keep: 5`  
+![image](https://github.com/user-attachments/assets/6b3d708e-d07b-4a2a-8bb6-39f393c4269b)  
+Cấu hình `GitLab Connection`  
+- Bảo đảm có kết nối My Gitlab Connection  
+![image](https://github.com/user-attachments/assets/403e3012-a74d-476e-8c04-ea7a23a8d54e)
+### Bước 4: Cấu hình Build Triggers
+Chọn giá trị `Build when a change is pushed to Gitlab. GitLab webhook URL ...`  
+### Bước 5: Cấu hình mục Pipeline
+Khai báo cấu hình:  
+  
+- Tại `Definition`, chọn `Pipeline script from SCM`  
+- `SCM` chọn `Git`  
+- Tại `Repositories` > `Repository URL` nhập `http://10.10.10.85/root/django-demo.git`.  
+- Tại `Credentials`, chọn `Add > Jenkins`  
+![image](https://github.com/user-attachments/assets/f30b19d7-b798-400f-a656-d77574321dd7)  
+Tại `Jenkins Creadentials Provider: Jenkins`  
+   
+Tại Kind chọn `Username with password`  
+Nhận thông tin User  
+Ở đây sẽ sử dụng tài khoản `jenkins` của Gitlab, đây là tài khoản có quyền access các thư mục code  
+`ID: gitlab-user-ci`  
+`Description: Used to access repositories jenkins admin`  
+Chọn `Add`  
+![image](https://github.com/user-attachments/assets/4eda3add-0e29-4f97-851c-71ffe21a9a01)  
+Tại Credentials  
+  
+chọn `jenkins/**** (Used to access repositories)`  
+Nếu cấu hình thành công, cảnh báo màu đỏ sẽ biến mất  
+`save` để lưu lại  
+# Cấu hình Webhook Gitlab
 
+### Bước 1: Cho phép Gitlab có thể gửi Hook ra ngoài mạng
+Chọn Admin Area  
+Chọn 1. `Settings` > `2. Network`  
+Tại mục Outbound requests  
+  
+Chọn `Allow requests to the local network ..`  
+`Save Changes`  
 
+### Bước 2: Cấu hình Web hook cho repo
+Chọn repo  
+Chọn `1. Settings` > `2. Webhooks`  
+Lưu ý:  
+
+URL Webhook sẽ có dạng `http://<gitlab-user-in-jenkins>:<token>@<host>:<port>/project/<project-name>`  
+Giá trị Token có được từ bước tạo tài khoản gitlab trên Jenkins `11afeaa471ab8502aa350a1eecf259c49a`  
+Tại 1, nhập URL Webhook theo format  
+Tại 2 và 3, chọn `Push events` và `Merge request events`  
+
+example:  
+```
+http://gitlab:11afeaa471ab8502aa350a1eecf259c49a@172.19.81.229:8080/project/django-demo
+```
 
 
 
