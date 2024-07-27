@@ -755,5 +755,3 @@ RUN myodbc-installer -a -d -n "MySQL ODBC 8.0 Driver" -t "Driver=/usr/local/lib/
 RUN Rscript -e 'install.packages(c("DBI","odbc"))'
 ```
 
-## Contact
-Need update? Contact me on [LinkedIn](https://www.linkedin.com/in/hmquan1996/).
