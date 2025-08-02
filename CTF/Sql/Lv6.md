@@ -24,7 +24,9 @@ if (isset($_GET["id"])) {
 ```
 - ở dòng 5 là untrusted data vì có thể nhập một 1 vào.
 - ở dòng 11 đã sử dụng luôn id đó.
+- Ở đây nó lấy 1 dòng. Có cách nào gộp?
 # Khai thác.
+
 🔁 Cách đổi chuỗi bất kỳ thành HEX:
 Bạn có thể dùng lệnh trong terminal hoặc code PHP/Python:
 ```
