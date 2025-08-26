@@ -105,31 +105,34 @@ Browser hiểu nội dung đó như một phần HTML/JavaScript, không phải 
 ### Steps to reproduce
 
     - Start curl interactively: curl -v http://challenge01.root-me.org/web-serveur/ch7/ 
-    - Make a POST request with the paylod mail=adm%4Dadm.de&jsep4b=send
-    - A cookie with visitor privileges is set
-    - Change the cookie value from visitor to admin
-    - Make a new GET request to receive the flag
+    - Make a POST request with the paylod mail=abc@gmail.com&jsep4b=send
+    - Sau khi view source ta thấy có 1 comment khả nghi: <!--SetCookie("ch7","visiteur");-->
+    - Thay đổi giá trị cookie value từ visitor thành admin
+    - Make a new GET /web-serveur/ch7/?c=visiteur request to receive the flag
 
 ## [HTTP - Directory indexing](https://www.root-me.org/en/Challenges/Web-Server/HTTP-Directory-indexing)
 
 ### Steps to reproduce
-
+    - Ctrl + u  <!-- include("admin/pass.html") -->
+    - http://challenge01.root-me.org/web-serveur/ch4/adminpas.html --> không có gì
+    - http://challenge01.root-me.org/web-serveur/ch4/admin thấy thêm folder backup
     - Visit http://challenge01.root-me.org/web-serveur/ch4/admin/backup/admin.txt
-    - Copy the flag
+    - Copy the flag pass: LINUX
 
 ## [HTTP - Headers](https://www.root-me.org/en/Challenges/Web-Server/HTTP-Headers)
 
 ### Steps to reproduce
 
-    - Set the header rootme admin to true through curl
-    - For this run curl --header "Header-RootMe-Admin: true" http://challenge01.root-me.org/web-serveur/ch5/
+    - GET http://challenge01.root-me.org/web-serveur/ch5/ --> ở response trả về có 1 head Header-RootMe-Admin: no
+    - For this run curl --header "Header-RootMe-Admin: no" http://challenge01.root-me.org/web-serveur/ch5/
     - Copy the flag from the response
 
 ## [HTTP - IP restriction bypass](https://www.root-me.org/en/Challenges/Web-Server/HTTP-IP-restriction-bypass)
 
 ### Steps to reproduce
 
-    - Copy your ipv4 address from ipconfig/ifconfig/netstat etc.
+    - Your IP do not belong to the LAN. --> tìm cách thay đổi ip
+    - Một số header quan trọng trong LAN `X-Forwarded-For`: thường có trong proxy nội bộ để ghi lại IP client.
     - Run curl -k http://challenge01.root-me.org/web-serveur/ch68/ -H "X-Forwarded-For: 'your_ipv4_address'"
     - Copy the flag from the response
 
