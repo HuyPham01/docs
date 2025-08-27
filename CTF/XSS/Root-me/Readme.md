@@ -140,22 +140,29 @@ Browser hiểu nội dung đó như một phần HTML/JavaScript, không phải 
 
 ### Steps to reproduce
 
-    - Run curl -v http://challenge01.root-me.org/web-serveur/ch32/login.php?redirect
-    - Run curl -v http://challenge01.root-me.org/web-serveur/ch32/index.php?redirect
+    - Don’t trust your browser  --> curl -v --> Mục tiêu truy cập index
+    - Run curl -v http://challenge01.root-me.org/web-serveur/ch32/login.php?redirect  --> login form
+    - Run curl -v http://challenge01.root-me.org/web-serveur/ch32/index.html --> 404
+    - Run curl -v http://challenge01.root-me.org/web-serveur/ch32/index.php --> 200
     - Copy the flag from the response
 
 ## [HTTP - Open redirect](https://www.root-me.org/en/Challenges/Web-Server/HTTP-Open-redirect)
 
 ### Steps to reproduce
 
+    - Find a way to make a redirection to a domain other than those showed on the web page.
+    - http://challenge01.root-me.org/web-serveur/ch52/?url=https://facebook.com&h=a023cfbf5f1c39bdf8407f28b60cd134  --> before
+    - Run http://challenge01.root-me.org/web-serveur/ch52/?url=https://google.com&h=a023cfbf5f1c39bdf8407f28b60cd134  --> error Incorrect hash!
     - MD5 hash any site e.g. google.com
     - Run a get curl for http://challenge01.root-me.org/web-serveur/ch52/ with url param set to the site and h param set to the hash
+    - Run http://challenge01.root-me.org/web-serveur/ch52/?url=https://google.com&h=99999ebcfdb78df077ad2727fd00969f  --> done
     - Copy the flag from the response
 
 ## [HTTP - POST](https://www.root-me.org/en/Challenges/Web-Server/HTTP-POST)
 
 ### Steps to reproduce
 
+    - Find a way to beat the top score!
     - Run curl -X POST -F 'score=100000000' -F 'generate=Give+a+try%21' http://challenge01.root-me.org/web-serveur/ch56/
     - Copy the flag from the response
 
@@ -163,7 +170,9 @@ Browser hiểu nội dung đó như một phần HTML/JavaScript, không phải 
 
 ### Steps to reproduce
 
+    - http://challenge01.root-me.org/web-serveur/ch2/ --> Wrong user-agent: you are not the "admin" browser!
     - Set the user agent to admin (under Edge its in the dev tools Network conditions tab)
+    - curl -v -H "User-Agent: admin" http://challenge01.root-me.org/web-serveur/ch2/
     - Reload the page
     - Copy the flag
 
@@ -171,6 +180,12 @@ Browser hiểu nội dung đó như một phần HTML/JavaScript, không phải 
 
 ### Steps to reproduce
 
+    - Verb tampering = thay đổi HTTP method (GET/POST/PUT/DELETE/…) để bypass kiểm tra hoặc kích hoạt hành vi không mong muốn.
+    - GET → đọc dữ liệu
+    - POST → gửi dữ liệu
+    - PUT → cập nhật dữ liệu
+    - DELETE → xóa dữ liệu
+    - HEAD, OPTIONS, PATCH …
     - Run curl -v -X OPTIONS http://challenge01.root-me.org/web-serveur/ch8/ 
     - Copy the flag from the response
 
