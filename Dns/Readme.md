@@ -178,3 +178,6 @@ docker compose up -d
 ``` 
 # Sử dụng PowerDnsAdmin
 http://ip:9191
+#  Đăng nhập thành công, cấu hình
+apikey: xem `docker-compose.yml` SECRET_KEY: `qwerasdf`
+![alt text](image.png)
