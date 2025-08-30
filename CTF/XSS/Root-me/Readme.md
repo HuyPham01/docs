@@ -237,6 +237,19 @@ if(isset($_POST["ip"]) && !empty($_POST["ip"])){
     - Kết quả tìm được file index.php~ (file backup)
     - curl http://challenge01.root-me.org/web-serveur/ch6/index.php~ --> done
     - Copy the passwd from the response
+
+## [File upload - ZIP](https://www.root-me.org/en/Challenges/Web-Server/File-upload-ZIP)
+### Steps to reproduce
+
+    - Test upload file abc.zip
+    - Web thực hiện giải nén file zip và lưu vào thư mục /web-serveur/ch51/tmp/uploads/abfasfqr546786758c/
+    - để đọc được file index.php ở /web-serveur/ch51/tmp/index.php ta cần upload file zip có chứa file symlink trỏ tới /web-serveur/ch51/tmp/index.php
+    - Tạo file symlink với đường dẫn tương đối trong linux: ln -s -f ../../../index.php symlink.txt
+    - ../../../index.php tương đối tới /web-serveur/ch51/tmp/index.php
+    - Tạo file zip có chứa symlink: zip exploit.zip symlink.txt
+    - Upload file exploit.zip
+    - Truy cập http://challenge01.root-me.org/web-serveur/ch51/tmp/uploads/abfasfqr546786758c/symlink.txt
+    - Copy the flag from the response
     
 # 2.  Web application vulnerabilities
 
