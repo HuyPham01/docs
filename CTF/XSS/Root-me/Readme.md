@@ -225,6 +225,18 @@ if(isset($_POST["ip"]) && !empty($_POST["ip"])){
 ?>
 ```
     - Và đọc .passwd để lấy flag
+
+## [Backup file](https://www.root-me.org/en/Challenges/Web-Server/Backup-file)
+### Steps to reproduce
+
+    - Khi vào chall ta thấy ô nhập login và password. 
+    - Nhớ tên bài là Backup file nha. Như vậy ta sẽ tìm cách tìm được file backup để xem source code.
+    - Ở đây tôi dùng công cụ dirsearch để tìm các file ẩn.
+    - dirsearch -u http://challenge01.root-me.org/web-serveur/ch11/ -e * -x 400,403,404 -t 70 --proxy http://127.0.0.1:8080
+    - dirsearch -u http://challenge01.root-me.org/web-serveur/ch11/ --proxy http://127.0.0.1:8080
+    - Kết quả tìm được file index.php~ (file backup)
+    - curl http://challenge01.root-me.org/web-serveur/ch6/index.php~ --> done
+    - Copy the passwd from the response
     
 # 2.  Web application vulnerabilities
 
