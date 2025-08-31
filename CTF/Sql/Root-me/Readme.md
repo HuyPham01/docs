@@ -24,3 +24,14 @@
 - Tiếp theo ta sẽ lấy dữ liệu từ bảng `users` với payload sau: `1' UNION SELECT username,password FROM users--`
 - Ta sẽ thấy được username và password của các user trong bảng users
 - Submit password của user admin để hoàn thành challenge
+
+## [SQL injection - Numeric](https://www.root-me.org/en/Challenges/Web-Server/SQL-injection-Numeric)
+### Steps to reproduce
+- Start the challenge
+- Bài này ta có thể thấy lỗi sqli xuất hiện tại tham số id trong url `action=new&new_id=1`
+- Để biết được tại sao lại bị lỗi sqli ta chỉ cần nhập vào ký tự `1'` . Lỗi sẽ xuất hiện Và biết đây là `sqlite3`
+- Để khai thác lỗi sqli ta có thể sử dụng payload sau: `1 UNION SELECT null,sql, null FROM sqlite_master--`
+- Ta sẽ thấy được các bảng trong database
+- Tiếp theo ta sẽ lấy dữ liệu từ bảng `users` với payload sau: `1 UNION SELECT null,username,password FROM users--`
+- Ta sẽ thấy được username và password của các user trong bảng users
+- Submit password của user admin để hoàn thành challenge.
