@@ -290,7 +290,16 @@ if(isset($_POST["ip"]) && !empty($_POST["ip"])){
     - chạy như 1 terminal. ls,cd, cat .passwd
     - Copy the flag from the response
 
-
+## [Nginx - Root Location Misconfiguration](https://www.root-me.org/en/Challenges/Web-Server/Nginx-Root-Location-Misconfiguration)
+### Steps to reproduce
+    - Trong nginx config này có đoạn root /etc/nginx/;
+    - Do đó ta có thể truy cập các file trong /etc/nginx/
+    - curl http://challenge01.root-me.org:59093/nginx.conf  --> done
+    - Thì thấy có include /etc/nginx/conf.d/default.conf;
+    - curl http://challenge01.root-me.org:59093/conf.d/default.conf  --> done
+    - Copy the flag from the response.
+    - [Đọc thêm](https://viblo.asia/p/cac-cau-hinh-sai-nginx-pho-bien-khien-web-server-cua-ban-gap-nguy-hiem-part-1-6J3ZgNxLKmB)
+    - https://blog.detectify.com/industry-insights/common-nginx-misconfigurations-that-leave-your-web-server-ope-to-attack/
     
 # 2.  Web application vulnerabilities
 
