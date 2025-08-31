@@ -250,6 +250,19 @@ if(isset($_POST["ip"]) && !empty($_POST["ip"])){
     - Upload file exploit.zip
     - Truy cập http://challenge01.root-me.org/web-serveur/ch51/tmp/uploads/abfasfqr546786758c/symlink.txt
     - Copy the flag from the response
+
+## [Install file](https://www.root-me.org/en/Challenges/Web-Server/Install-file)
+### Steps to reproduce
+    - Khi vào chall ta thấy trăng tinh. Crul + u để xem source code.
+    - Có comment <!-- /web-serveur/ch6/phpbb" -->
+    - Vào thử http://challenge01.root-me.org/web-serveur/ch6/phpbb --> khong có gì
+    - Ở đây tôi dùng công cụ dirsearch để tìm các file ẩn.
+    - dirsearch -u http://challenge01.root-me.org/web-serveur/ch6/phpbb -e * -x 400,403,404 -t 70 --max-rate=50 --proxy http://127.0.0.1:8080
+    - Phát hiện thư mục /install
+    - Vào http://challenge01.root-me.org/web-serveur/ch6/phpbb/install
+    - Có file install.php
+    - curl http://challenge01.root-me.org/web-serveur/ch6/phpbb/install/install.php
+    - Copy the flag from the response.
     
 # 2.  Web application vulnerabilities
 
