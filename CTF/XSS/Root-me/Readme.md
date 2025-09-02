@@ -106,7 +106,16 @@ Browser hiểu nội dung đó như một phần HTML/JavaScript, không phải 
     - curl -v http://challenge01.root-me.org/web-client/ch4/ch4.html
     - Decode pass.
 
-
+## [Javascript - Obfuscation 2](https://www.root-me.org/en/Challenges/Web-Client/Javascript-Obfuscation-2)
+### Steps to reproduce
+    - Start
+    - curl http://challenge01.root-me.org/web-client/ch12/ch12.html
+    - Phát hiện có javascript được mã hóa
+    - f12 vào console: type allow pasting 
+    - console.log(pass) --> unescape("String.fromCharCode%28104%2C68%2C117%2C102%2C106%2C100%2C107%2C105%2C49%2C53%2C54%29")
+    - console.log(unescape("String.fromCharCode%28104%2C68%2C117%2C102%2C106%2C100%2C107%2C105%2C49%2C53%2C54%29")) --> String.fromCharCode(104,68,117,102,106,100,107,105,49,53,54)
+    - console.log(String.fromCharCode(104,68,117,102,106,100,107,105,49,53,54)) --> pass
+    - copy pass.
 
 ## [HTTP - Cookies](https://www.root-me.org/en/Challenges/Web-Server/HTTP-Cookies)
 
