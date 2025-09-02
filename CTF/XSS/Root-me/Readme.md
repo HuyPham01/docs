@@ -100,6 +100,14 @@ Browser hiểu nội dung đó như một phần HTML/JavaScript, không phải 
     - Wait for the bot to click on the link
     - Copy the flag in the captured request cookie
 
+## [Javascript - Obfuscation 1](https://www.root-me.org/en/Challenges/Web-Client/Javascript-Obfuscation-1)
+### Steps to reproduce
+    - Start 
+    - curl -v http://challenge01.root-me.org/web-client/ch4/ch4.html
+    - Decode pass.
+
+
+
 ## [HTTP - Cookies](https://www.root-me.org/en/Challenges/Web-Server/HTTP-Cookies)
 
 ### Steps to reproduce
