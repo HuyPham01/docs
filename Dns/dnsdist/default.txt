@@ -1,0 +1,57 @@
+setSecurityPollSuffix("")
+
+webserver("0.0.0.0:8083")
+setWebserverConfig({acl="0.0.0.0/0"})
+
+controlSocket('127.0.0.1:5199')
+setKey("2ux3QDmpdDAzYjspjkhjkuyF8jXFU5qhd/BqXV8ag=")
+
+addAction(AllRule(), LogAction("/var/log/dnsdist.log", false, true, false,true))
+
+setLocal('0.0.0.0:53')
+
+
+newServer({address="172.21.0.5",name="nsmaster", weight=1, tcpFastOpen=true, healthCheckMode='lazy', checkInterval=1, lazyHealthCheckFailedInterval=30, rise=2, maxCheckFailures=3, lazyHealthCheckThreshold=30, lazyHealthCheckSampleSize=100,  lazyHealthCheckMinSampleCount=10, lazyHealthCheckMode='TimeoutOnly'})
+newServer({address="8.8.8.8",name="ns-slave", weight=2, tcpFastOpen=true, healthCheckMode='lazy', checkInterval=1, lazyHealthCheckFailedInterval=30, rise=2, maxCheckFailures=3, lazyHealthCheckThreshold=30, lazyHealthCheckSampleSize=100,  lazyHealthCheckMinSampleCount=10, lazyHealthCheckMode='TimeoutOnly'})
+
+setACL({'0.0.0.0/0', '::/0'})
+setServerPolicy(wrandom) -- weight random Khi có 3 yêu cầu đến thì ns-slave sẽ trả lời 2 query, nsmaster sẽ trả lời 1
+addAction(QTypeRule(DNSQType.ANY), TCAction())
+
+local dbr = dynBlockRulesGroup()
+---- Rate limit 30 query trong 10 giây, sẽ chặn trong 60 giây nếu đạt giới hạn
+dbr:setQueryRate(30, 10, "Exceeded query rate", 60)
+---- Rate limit 20 query với NXDOMAIN ( non-existent domain (tên miền không tồn tại)) trong 10 giây, sẽ chặn trong 60 giây nếu đạt giới hạn
+dbr:setRCodeRate(DNSRCode.NXDOMAIN, 20, 10, "Exceeded NXD rate", 60)
+---- Rate limit 20 query với SERVFAIL trong 10 giây, sẽ chặn trong 60 giây nếu đạt giới hạn
+dbr:setRCodeRate(DNSRCode.SERVFAIL, 20, 10, "Exceeded ServFail rate", 60)
+---- Rate limit 5 query với ANY (tất cả type) trong 10 giây, sẽ chặn trong 60 giây nếu đạt giới hạn
+dbr:setQTypeRate(DNSQType.ANY, 5, 10, "Exceeded ANY rate", 60)
+dbr:setQTypeRate(DNSQType.A, 5, 10, "Exceeded A rate", 60)
+---- Rate limit BW 10000 byte query trong 10 giây, sẽ chặn trong 60 giây nếu đạt giới hạn
+dbr:setResponseByteRate(10000, 10, "Exceeded resp BW rate", 60)
+
+---- Định nghĩa hàm "maintenance"
+function maintenance()
+    dbr:apply()
+end
+
+
+function flushCache(dq)
+    errlog("Got notify for " .. dq.qname:toString())
+    a = getPool(""):getCache():toString()
+    getPool(""):getCache():expungeByName(dq.qname, DNSQType.ANY, true)
+    z = getPool(""):getCache():toString()
+    errlog("Went from " .. a .. " to " .. z)
+    return DNSAction.None
+end
+
+addAction(AndRule({OpcodeRule(DNSOpcode.Notify)}), TeeAction("172.21.0.5"))
+addAction(AndRule({OpcodeRule(DNSOpcode.Notify)}), TeeAction("8.8.8.8"))
+
+
+addResponseAction(AndRule({OpcodeRule(DNSOpcode.Notify), RCodeRule(DNSRCode.NOERROR)}), LuaResponseAction(flushCache))
+
+pc = newPacketCache(1000000, {maxTTL=300, minTTL=0, staleTTL=60, dontAge=false})
+getPool(""):setCache(pc)
+

@@ -1,0 +1,66 @@
+version: '3'
+services:
+  pdnsdb:
+    image: mysql:5.7.35
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: pdns
+      MYSQL_USER: pdns
+      MYSQL_PASSWORD: pdns123
+    volumes:
+      - ./pdnsdb/data:/var/lib/mysql
+      - ./pdnsdb/init-scripts:/docker-entrypoint-initdb.d
+    networks:
+      - pdns_net
+  pdns:
+    image: powerdns/pdns-auth-47:4.7.4
+    restart: always
+    user: root
+    privileged: true
+    environment:
+      SECRET_KEY: qwerasdf
+    volumes:
+      - ./pdns/config:/etc/powerdns
+    depends_on:
+      - pdnsdb
+    networks:
+      - pdns_net
+  pdnsadmin:
+    image: powerdnsadmin/pda-legacy:latest
+    restart: always
+    ports:
+      - "9191:80"
+    environment:
+      - SQLALCHEMY_DATABASE_URI=mysql://pdns:pdns123@pdnsdb/pdns
+      - GUNICORN_TIMEOUT=60
+      - GUNICORN_WORKERS=2
+      - GUNICORN_LOGLEVEL=DEBUG
+      - PDNS_API_KEY=qwerasdf
+      - PDNS_VERSION=4.7.4
+      - PDNS_API_URL=http://pdns:8081
+    depends_on:
+      - pdns
+    networks:
+      - pdns_net
+  dnsdist:
+    hostname: dnsdist
+    image: darkstreet00/dnsdist-docker:1.9.10 # Or a more recent stable tag
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    command: ["--disable-syslog", "--uid", "dnsdist", "--gid", "dnsdist", "--verbose"]
+    volumes:
+      - ./dnsdist/dnsdist.conf:/etc/dnsdist/dnsdist.conf:ro
+    ports:
+      - "8053:8053" # DNS over HTTP(S)
+      - "853:853"   # DNS over TLS
+      - "53:53"     # Unencrypted DNS TCP
+      - "53:53/udp" # Unencrypted DNS UDP
+      - "8083:8083"
+    networks:
+      - pdns_net
+
+networks:
+  pdns_net:
+    driver: bridge
