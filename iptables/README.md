@@ -126,3 +126,19 @@ drop if more than 10 new connections are there in last 60 seconds:
 ```bash
 sudo iptables -A INPUT -p tcp --dport ssh -m conntrack --ctstate NEW -m recent --update --seconds 60 --hitcount 10 -j DROP
 ```
+- Chặn tất cả IP, kể cả Localhost đến port
+```bash
+iptables -I INPUT -p tcp --dport xxx -j DROP
+```
+- Cho phép Localhost qua interface `lo`
+```bash
+iptables -A INPUT -i lo -j ACCEPT
+```
+- Cho phép source ip
+```bash
+iptables -I INPUT -s 172.0.0.0/8 -j ACCEPT
+```
+- `-I` (Insert - chèn lên đầu)
+- `-A` (Append - thêm vào cuối)
+- `-i` (interface)
+- `-s` (source ip)
