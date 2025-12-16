@@ -142,3 +142,7 @@ iptables -I INPUT -s 172.0.0.0/8 -j ACCEPT
 - `-A` (Append - thêm vào cuối)
 - `-i` (interface)
 - `-s` (source ip)
+- Nhiều ip port
+```bash
+iptables -I INPUT -p tcp -m multiport --dports 80,443,22 -s xxx,xxx -j ACCEPT
+```
