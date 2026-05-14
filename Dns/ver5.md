@@ -265,13 +265,12 @@ docker compose up -d
 - Trong lần truy cập đầu tiên, bấm **Create an account** để tạo tài khoản. Do đây là tài khoản đầu tiên nên nó sẽ tự động được cấp quyền Admin cao nhất.
 - Sau khi đăng nhập, hệ thống đã được tự động kết nối qua biến môi trường, bạn có thể bắt đầu sử dụng ngay lập tức.
 
-### Khắc phục Lỗi Ẩn Bản Ghi LUA
-Mặc định PowerDNS-Admin ẩn bản ghi LUA khỏi giao diện. Để hiển thị, bạn cần chạy lệnh sau trên server để can thiệp vào DB, sau đó khởi động lại container Admin:
-
-```bash
-docker compose exec pdnsdb mysql -u pdnsadmin -ppdnsadmin123 pdnsadmin -e "UPDATE setting SET value = REPLACE(value, '\"LUA\": false', '\"LUA\": true') WHERE name='forward_records_allow_edit';"
-docker compose restart pdnsadmin
-```
+### Bật Hiển thị Bản Ghi LUA
+Mặc định PowerDNS-Admin ẩn bản ghi LUA khỏi giao diện để tránh rườm rà. Bạn có thể tự bật nó lên ngay trên giao diện web một cách rất đơn giản:
+1. Đăng nhập với quyền Admin.
+2. Vào menu **Settings** -> **Records** (hoặc General).
+3. Tại ô **Forward Zone Allowed Record Types**, bạn gõ thêm chữ `LUA` vào (hoặc tick chọn LUA).
+4. Bấm **Save**. Từ giờ tuỳ chọn LUA sẽ xuất hiện khi bạn Add Record!
 
 ---
 
