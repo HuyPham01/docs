@@ -17,25 +17,48 @@ mkdir -p pdns/config pdnsdb/init-scripts pdnsdb/data
 ```
 
 Danh sách các file cần tạo:
+- `.env`
 - `docker-compose.yml`
 - `pdns/config/pdns.conf`
+- `pdnsdb/init-scripts/01-users.sh`
 - `pdnsdb/init-scripts/init.sql`
 
 ---
 
-## 1. Khởi tạo Database Schema (`init.sql`)
+## 1. Khởi tạo Biến Môi Trường (`.env`)
+Tạo file `.env` ngang hàng với `docker-compose.yml` để bảo mật thông tin:
 
-Tạo file `pdnsdb/init-scripts/init.sql` và điền nội dung sau (Đã được tối ưu để hỗ trợ `utf8mb4` cho MySQL 8.0 và sửa lỗi quá tải độ dài VARCHAR thành TEXT):
+```env
+# Database Passwords
+MYSQL_ROOT_PASSWORD=123456
+MYSQL_PASSWORD=pdns123
+PDNSADMIN_PASSWORD=pdnsadmin123
 
-```sql
--- Khởi tạo database và user cho PowerDNS-Admin
+# PowerDNS API
+PDNS_API_KEY=qwerasdf
+```
+
+---
+
+## 2. Khởi tạo Database Schema (`01-users.sh` và `init.sql`)
+
+Do chúng ta dùng biến môi trường, ta cần 1 script bash để tạo Database và 1 file SQL để tạo bảng.
+
+**File 1: `pdnsdb/init-scripts/01-users.sh`**
+```bash
+#!/bin/bash
+mysql -u root -p"${MYSQL_ROOT_PASSWORD}" <<-EOSQL
 CREATE DATABASE IF NOT EXISTS pdnsadmin;
-CREATE USER IF NOT EXISTS 'pdnsadmin'@'%' IDENTIFIED BY 'pdnsadmin123';
+CREATE USER IF NOT EXISTS 'pdnsadmin'@'%' IDENTIFIED BY '${PDNSADMIN_PASSWORD}';
 GRANT ALL PRIVILEGES ON pdnsadmin.* TO 'pdnsadmin'@'%';
 FLUSH PRIVILEGES;
-
--- Khởi tạo database cho PowerDNS
 CREATE DATABASE IF NOT EXISTS pdns;
+EOSQL
+```
+*(Lưu ý: Chạy lệnh `chmod +x pdnsdb/init-scripts/01-users.sh` để cấp quyền thực thi).*
+
+**File 2: `pdnsdb/init-scripts/init.sql`**
+```sql
 USE pdns;
 
 CREATE TABLE domains (
@@ -128,19 +151,19 @@ CREATE UNIQUE INDEX namealgoindex ON tsigkeys(name, algorithm);
 
 ---
 
-## 2. Cấu hình PowerDNS (`pdns.conf`)
+## 3. Cấu hình PowerDNS (`pdns.conf`)
 
-Tạo file `pdns/config/pdns.conf` và điền cấu hình sau. Cấu hình này đã được bật sẵn DNSSEC, LUA Records, ALIAS và Mặc định SOA cho công ty EVG:
+Tạo file `pdns/config/pdns.conf`. Lưu ý có `expand-env=yes` để nó đọc biến từ `.env`:
 
 ```conf
 api=yes
-api-key=qwerasdf
+api-key=$PDNS_API_KEY
 launch=gmysql
 gmysql-host=pdnsdb
 gmysql-port=3306
 gmysql-dbname=pdns
 gmysql-user=pdns
-gmysql-password=pdns123
+gmysql-password=$MYSQL_PASSWORD
 local-address=0.0.0.0
 local-port=53  
 webserver=yes
@@ -154,13 +177,14 @@ gmysql-dnssec=yes
 default-soa-content=ns1.evg.vn admin.evg.vn 0 10800 3600 604800 3600
 expand-alias=yes
 resolver=8.8.8.8
+expand-env=yes
 ```
 
 ---
 
-## 3. Cấu hình Docker Compose (`docker-compose.yml`)
+## 4. Cấu hình Docker Compose (`docker-compose.yml`)
 
-Tạo file `docker-compose.yml` với nội dung dưới đây. Lưu ý port 53 được đổi thành 10053 để tránh xung đột với docker-proxy của hệ thống:
+Tạo file `docker-compose.yml` với nội dung dưới đây:
 
 ```yml
 version: '3.8'
@@ -170,10 +194,10 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: pdns
       MYSQL_USER: pdns
-      MYSQL_PASSWORD: pdns123
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - ./pdnsdb/data:/var/lib/mysql
       - ./pdnsdb/init-scripts:/docker-entrypoint-initdb.d
@@ -186,7 +210,9 @@ services:
     user: root
     privileged: true
     environment:
-      SECRET_KEY: qwerasdf
+      SECRET_KEY: ${PDNS_API_KEY}
+      PDNS_API_KEY: ${PDNS_API_KEY}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "10053:53/tcp"
       - "10053:53/udp"
@@ -203,12 +229,12 @@ services:
     ports:
       - "9191:80"
     environment:
-      - SQLALCHEMY_DATABASE_URI=mysql://pdnsadmin:pdnsadmin123@pdnsdb/pdnsadmin
+      - SQLALCHEMY_DATABASE_URI=mysql://pdnsadmin:${PDNSADMIN_PASSWORD}@pdnsdb/pdnsadmin
       - GUNICORN_TIMEOUT=60
       - GUNICORN_WORKERS=2
       - GUNICORN_LOGLEVEL=INFO
       - PDNS_API_URL=http://pdns:8081/
-      - PDNS_API_KEY=qwerasdf
+      - PDNS_API_KEY=${PDNS_API_KEY}
       - PDNS_VERSION=5.0.4
     depends_on:
       - pdns
@@ -223,7 +249,7 @@ networks:
 
 ---
 
-## 4. Chạy Hệ thống
+## 5. Chạy Hệ thống
 
 Để khởi động toàn bộ hệ thống, chạy lệnh sau:
 
@@ -233,7 +259,7 @@ docker compose up -d
 
 ---
 
-## 5. Sử dụng PowerDNS-Admin
+## 6. Sử dụng PowerDNS-Admin
 
 - Truy cập giao diện quản trị tại: `http://<ip-may-chu>:9191`
 - Trong lần truy cập đầu tiên, bấm **Create an account** để tạo tài khoản. Do đây là tài khoản đầu tiên nên nó sẽ tự động được cấp quyền Admin cao nhất.
@@ -249,7 +275,7 @@ docker compose restart pdnsadmin
 
 ---
 
-## 6. Các Tính Năng Nâng Cao Đã Bật
+## 7. Các Tính Năng Nâng Cao Đã Bật
 
 1. **API Gốc PowerDNS:** 
    - Quản lý cực mạnh qua API `http://<IP>:8081/api/v1/` với header `X-API-Key: qwerasdf`.
